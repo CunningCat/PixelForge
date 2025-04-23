@@ -13,6 +13,9 @@ export default function Login () {
   const gotoRegister = () => {
     navigate('/register')
   }
+  const gotoHome = () => {
+    navigate('/')
+  }
 
   //登录验证逻辑
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,7 +31,7 @@ export default function Login () {
     } else {
       alert('登录成功！');
       console.log('用户信息:', data.user);
-      
+      gotoHome()
     }
   };
 
