@@ -1,7 +1,12 @@
 import Logo from "../../assets/Logo.png"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { useNavigate } from "react-router"
 export default function Login () {
+  const navigate = useNavigate()
+  const gotoRegister = () => {
+    navigate('/register')
+  }
   return (
     <div className=" min-h-screen w-screen flex items-center justify-center overflow-auto">
       <form className="w-[476px] h-[582px] bg-amber-50 mt-10 rounded-2xl px-8">
@@ -12,7 +17,8 @@ export default function Login () {
         <label className="text-l mt-2 text-gray-500">密码</label>
         <Input  className=" w-full" />
         <Button className="w-full mt-5 bg-amber-400 hover:bg-amber-500 cursor-pointer">登录</Button>
-        <Button className="w-full mt-5 bg-white hover:bg-gray-200 text-black cursor-pointer">注册</Button>
+        <Button className="w-full mt-5 bg-white hover:bg-gray-200 text-black cursor-pointer"
+        onClick={gotoRegister}>注册</Button>
       </form>
     </div>
   )
