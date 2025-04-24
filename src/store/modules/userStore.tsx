@@ -1,0 +1,20 @@
+import {createSlice,PayloadAction} from '@reduxjs/toolkit';
+import { User } from "@/types/types";
+//用户信息
+const userSlice = createSlice({
+  name:'user',
+  initialState:{
+    userInfo:{}
+  },
+  reducers:{
+    setUser(state,action:PayloadAction<User>){
+      state.userInfo = action.payload
+    },
+    
+  }
+})
+
+const {setUser} = userSlice.actions
+const reducer = userSlice.reducer
+export {setUser}
+export default reducer
