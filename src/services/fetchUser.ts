@@ -2,32 +2,25 @@ import { User } from "@/types/user";
 import { supabase } from "@/lib/supabaseClient";
 
 
-export async function fetchUserFromSupabase(): Promise<User | null> {
-  const {
-    data: session,
-    error: sessionError,
-  } = await supabase.auth.getSession();
-
-  if (sessionError || !session.session?.user) {
-    console.error('No session found:', sessionError);
+export async function fetchUserFromSupabase(userId: string): Promise<User | null> {
+  if (!userId) {
+    console.error('传入的 userId 为空');
     return null;
   }
 
-  const userId = session.session.user.id;
-
   const { data, error } = await supabase
-    .from('profiles')
-    .select('id, name, avatar_url')
-    .eq('id', userId)
+    .from('user_info')
+    .select('uid, name, avatar_url')
+    .eq('uid', userId)
     .single();
 
   if (error) {
-    console.error('Error fetching user profile:', error);
+    console.error('从 Supabase 获取用户信息失败:', error.message);
     return null;
   }
 
   return {
-    id: data.id,
+    id: data.uid,
     name: data.name,
     avatar_url: data.avatar_url,
   };

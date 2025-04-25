@@ -31,6 +31,8 @@ export default function Login () {
     } else {
       alert('登录成功！');
       console.log('用户信息:', data.user);
+      //登录成功后存入用户id到localStorage
+      localStorage.setItem('userId', JSON.stringify(data.user.id));
       gotoHome()
     }
   };

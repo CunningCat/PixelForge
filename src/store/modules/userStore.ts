@@ -4,7 +4,11 @@ import { User } from "@/types/user";
 const userSlice = createSlice({
   name:'user',
   initialState:{
-    userInfo:{}
+    userInfo:{
+      id:0,
+      name:'',
+      avatar_url:''
+    }
   },
   reducers:{
     setUser(state,action:PayloadAction<User>){
