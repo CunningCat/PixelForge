@@ -7,6 +7,7 @@ import { UserAvatar } from "@/components/user/avatar";
 //头部
 export default function Header() {
   const {user} = useSelector((state: RootState) => state);
+  
   return (
     <header className="py-6 px-4 flex justify-between items-center bg-gray-900 bg-opacity-80">
       <div className="flex items-center space-x-4">
@@ -20,7 +21,7 @@ export default function Header() {
           <li><a href="#projects" className="hover:text-yellow-400 hover:underline">Projects</a></li>
           <li><a href="#contact" className="hover:text-yellow-400 hover:underline">Contact</a></li>
           {/* userinfo存在则显示头像，否则显示注册登录按钮 */}
-          {user.userInfo? <UserAvatar user={user.userInfo} /> :<ButtonRegister />}
+          {user.userInfo.id!==0? <UserAvatar user={user.userInfo} /> :<ButtonRegister />}
         </ul>
         
       </nav>
