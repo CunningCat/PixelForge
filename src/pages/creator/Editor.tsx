@@ -1,5 +1,5 @@
 import { useState } from "react";
-import  TextImage  from "./Text_image";
+import  TextImage  from "./TextImage";
 import  Text  from "./Text";
 //创作者编辑器
 export function Editor() {
