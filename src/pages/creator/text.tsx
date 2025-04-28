@@ -1,4 +1,4 @@
-export function Text() {
+export default function Text() {
   return (
     <div>
       <div className="mt-5 mx-auto bg-gray-200 h-[500px] rounded-lg">

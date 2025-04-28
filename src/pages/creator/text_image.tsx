@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import  {RootState}  from "@/store";
 import { useState } from "react";
 
-export function TextImage() {
+export default function TextImage() {
   const { userInfo } = useSelector((state:RootState) => state.user);
   const userId = userInfo.id;
   const [imgUrl, setImgUrl] = useState<string>('');
