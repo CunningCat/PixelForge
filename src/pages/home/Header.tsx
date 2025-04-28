@@ -23,7 +23,7 @@ export default function Header() {
           <li><button  className="hover:text-yellow-400 hover:underline cursor-pointer"
           onClick={() =>navigate('/creator')}>创作者中心</button></li>
           {/* userinfo存在则显示头像，否则显示注册登录按钮 */}
-          {user.userInfo.id!==0? <UserAvatar user={user.userInfo}/> :<ButtonRegister />}
+          {user.userInfo.id!==''? <UserAvatar user={user.userInfo}/> :<ButtonRegister />}
         </ul>
         
       </nav>

@@ -1,7 +1,30 @@
+import UploadImage from "@/services/uploadImg"
+import { useSelector } from "react-redux";
+import  {RootState}  from "@/store";
+import { useState } from "react";
+
 export function TextImage() {
+  const { userInfo } = useSelector((state:RootState) => state.user);
+  const userId = userInfo.id;
+  const [imgUrl, setImgUrl] = useState<string>('');
+
+  const handleClick = async () => {
+   
+    const img = await UploadImage(userId);  // 调用上传图片的函数
+    
+    if (img !== '' && img !== undefined) {
+      setImgUrl(img);
+    } 
+  };
+
   return (
     <div>
-      <button className="bg-gray-200 w-30 h-30 text-4xl mt-3 text-gray-500 cursor-pointer rounded-lg">+</button>
+      {/* 上传图片按钮 */}
+      {imgUrl===''?<button className="bg-gray-200 w-30 h-30 text-4xl mt-3 text-gray-500 cursor-pointer rounded-lg"
+      onClick={()=>handleClick()}
+      >+</button>:
+      <img src={imgUrl} alt="上传的图片" className="w-30 h-30 mt-3 rounded-lg" />}
+
       <div className="mt-5 mx-auto bg-gray-200 h-[300px] rounded-lg">
         <div className="pt-2 pl-2">
           <input type="text" placeholder="标题" className="focus:outline-none w-full">
