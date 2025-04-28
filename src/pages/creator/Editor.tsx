@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { TextImage } from "./text_image";
-import { Text } from "./text";
+import { TextImage } from "./Text_image";
+import { Text } from "./Text";
 //创作者编辑器
 export function Editor() {
   const tabs = ["发布图文", "发布文章"];

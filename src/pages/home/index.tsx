@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { fetchUserFromSupabase } from '@/services/fetchUser';
 import { useDispatch } from 'react-redux';
 import { setUser } from '@/store/modules/userStore';
-
+import { TheLastst } from './TheLastst';
 
 
 export default function Home() {
@@ -31,10 +31,11 @@ export default function Home() {
   },[dispatch]) ;
   
   return (
-  <div className="min-h-screen bg-pixel bg-repeat text-white font-pixel">
+  <div className="min-h-screen bg-pixel bg-repeat text-white font-pixel ">
     <Header />
-    <main className="bannel">
+    <main className="bannel flex flex-col gap-10">
       <img className="w-full" src={pixelBanner} alt="Pixel Art Background" />
+      <TheLastst />
       <Projects />
     </main>
     <About />

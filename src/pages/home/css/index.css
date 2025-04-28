@@ -1,0 +1,19 @@
+.news{
+  color: orange;
+  font-size: 20px;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+.sub-headline{
+  color: rgb(215, 207, 207);
+  font-size: 16px;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+.time{
+  font-size: var(--text-xs) /* 0.75rem = 12px */;
+  line-height: var(--tw-leading, var(--text-xs--line-height));
+  color: var(--color-gray-500) 
+}
