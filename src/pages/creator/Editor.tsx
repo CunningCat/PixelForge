@@ -1,6 +1,6 @@
 import { useState } from "react";
 import  TextImage  from "./TextImage";
-import  Text  from "./Text";
+import  Article  from "./Article";
 //创作者编辑器
 export function Editor() {
   const tabs = ["发布图文", "发布文章"];
@@ -30,7 +30,7 @@ export function Editor() {
           transform: `translateX(${activeIndex * 120}px)`,
         }}
       />
-      {activeIndex === 0 ? <TextImage /> : <Text />}
+      {activeIndex === 0 ? <TextImage /> : <Article />}
       <div className="flex mt-4 absolute bottom-5 right-5">
         <button className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-10 rounded-lg cursor-pointer">
           发布
