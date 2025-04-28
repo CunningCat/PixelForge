@@ -35,7 +35,7 @@ export function TheLastst() {
     }
   ]
   const lastContentLeader = lastContent[0] || null;
-  const lastContentOthers = lastContent.filter((item, index) => index >= 1);
+  const lastContentOthers = lastContent.slice(1, lastContent.length) || null;
 
   return(
     <div className="flex h-screen flex-col items-center">
