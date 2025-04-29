@@ -2,18 +2,23 @@ import UploadImage from "@/services/uploadImg"
 import { useSelector } from "react-redux";
 import  {RootState}  from "@/store";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setTitle, setContent, setImageUrl } from "@/store/modules/postStore";
 
 export default function TextImage() {
   const { userInfo } = useSelector((state:RootState) => state.user);
-  const userId = userInfo.id;
+  const userId = userInfo.uid;
   const [imgUrl, setImgUrl] = useState<string>('');
+  const dispatch = useDispatch();
+  
 
+  // 上传图片的函数
   const handleClick = async () => {
-   
-    const img = await UploadImage(userId);  // 调用上传图片的函数
+    const img = await UploadImage(userId);  
     
     if (img !== '' && img !== undefined) {
       setImgUrl(img);
+      dispatch(setImageUrl(img));
     } 
   };
 
@@ -24,15 +29,19 @@ export default function TextImage() {
       onClick={()=>handleClick()}
       >+</button>:
       <img src={imgUrl} alt="上传的图片" className="w-30 h-30 mt-3 rounded-lg" />}
-
+      {/* 输入标题 */}
       <div className="mt-5 mx-auto bg-gray-200 h-[300px] rounded-lg">
         <div className="pt-2 pl-2">
-          <input type="text" placeholder="标题" className="focus:outline-none w-full">
+          <input type="text" placeholder="标题" className="focus:outline-none w-full"
+          onChange={e => dispatch(setTitle(e.target.value))}>
           </input>
         </div>
         <hr className="w-full border-gray-300 mt-2  " />
+
+        {/* 输入正文 */}
         <div className="pt-2 pl-2">
-          <textarea placeholder="正文" maxLength={500} className="focus:outline-none w-full resize-none" >
+          <textarea placeholder="正文" maxLength={500} className="focus:outline-none w-full resize-none" 
+          onChange={e => dispatch(setContent(e.target.value))}>
           </textarea>
         </div>
         

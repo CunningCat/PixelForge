@@ -20,7 +20,7 @@ export async function fetchUserFromSupabase(userId: string): Promise<User | null
   }
 
   return {
-    id: data.uid,
+    uid: data.uid,
     name: data.name,
     avatar_url: data.avatar_url,
   };
