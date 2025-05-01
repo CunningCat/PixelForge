@@ -8,6 +8,7 @@ import { fetchUserFromSupabase } from '@/services/fetchUser';
 import { useDispatch } from 'react-redux';
 import { setUser } from '@/store/modules/userStore';
 import { TheLastst } from './TheLastst';
+import { getLatestNews } from '@/services/getLatestNews';
 
 
 export default function Home() {
@@ -27,8 +28,11 @@ export default function Home() {
           }
         }
       )};
-     
-  },[dispatch]) ;
+  getLatestNews() .then((news) => {
+    console.log(news);
+  });
+  
+  },[]) ;
   
   return (
   <div className="min-h-screen bg-pixel bg-repeat text-white font-pixel ">
