@@ -32,7 +32,7 @@ export default function Home() {
     console.log(news);
   });
   
-  },[]) ;
+  },[dispatch]) ;
   
   return (
   <div className="min-h-screen bg-pixel bg-repeat text-white font-pixel ">

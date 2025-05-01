@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import  {RootState}  from '@/store';
 import { useDispatch } from "react-redux";
 import { setUid } from "@/store/modules/postStore";
-
+import { useNavigate } from "react-router";
 //创作者编辑器
 export function Editor() {
   const tabs = ["发布图文", "发布文章"];
@@ -14,14 +14,22 @@ export function Editor() {
   const {post} = useSelector((state:RootState) => state);
   const {userInfo} = useSelector((state:RootState) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   //发布
   const handlePost = async () => {
     
     //设置用户id
     dispatch(setUid(userInfo.uid));
     //创建帖子
-    createPost({PostInfo:post.postInfo});
-  }
+    createPost({PostInfo:post.postInfo})
+    .then((data) => {
+      if (data) {
+      alert('发布成功');
+      navigate('/');
+      }
+    })
+    }
+  
 
 
   return (

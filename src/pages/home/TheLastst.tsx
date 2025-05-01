@@ -1,5 +1,5 @@
 
-import img from "../../assets/Pixel-banner.png"
+
 import "@/pages/home/css/index.css"
 import { useEffect } from "react";
 import { useState } from "react";
@@ -36,13 +36,13 @@ export function TheLastst() {
   return(
     <div className="flex h-screen flex-col items-center">
       <div className="text-4xl">
-      Catch the Latest
+      最新动态
       </div>
       {latestNews.length === 0 ? <div>加载中...</div>:
       <div className="flex mt-4 gap-20 mx-20">
       
         <div className="w-1/2 h-1/2 flex flex-col gap-2">
-          <img src={img} ></img>
+          <img src={latestNews[0].image_url} ></img>
           <div className="news">最新消息</div>
           <div className="text-xl">{latestNews[0].title}</div>
           <div className="sub-headline">{latestNews[0].content}</div>
