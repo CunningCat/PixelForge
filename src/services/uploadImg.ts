@@ -41,7 +41,7 @@ export default function UploadImage(uid:string):Promise<string>  {
     const { data: signedUrlData, error: signedUrlError } = await supabase
     .storage
     .from('post-image') 
-    .createSignedUrl(filePath, 600); // 600 秒有效期
+    .createSignedUrl(filePath, 60 * 60 * 24 * 365); // url1年有效期
 
     if (signedUrlError) {
       console.error('生成签名URL失败:', signedUrlError.message);
