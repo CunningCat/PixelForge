@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { useNavigate } from "react-router"
 import { supabase } from '../../lib/supabaseClient';
 import { useState } from "react";
-
+import { toast } from "sonner"
 
 export default function Login () {
   const navigate = useNavigate()
@@ -29,8 +29,13 @@ export default function Login () {
     if (error) {
       alert(`登录失败: ${error.message}`);
     } else {
-      alert('登录成功！');
-      console.log('用户信息:', data.user);
+      toast("登录成功", {
+        description: "完成",
+        action: {
+          label: "关闭",
+          onClick: () => console.log("关闭"),
+        },
+      });
       //登录成功后存入用户id到localStorage
       localStorage.setItem('userId', JSON.stringify(data.user.id));
       gotoHome()

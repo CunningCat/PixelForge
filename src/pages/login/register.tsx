@@ -5,7 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { supabase } from '../../lib/supabaseClient';
 import { useState } from "react";
 import { useNavigate } from "react-router"
-
+import { toast } from "sonner"
 export default function Register () {
 
   const [email, setEmail] = useState('');
@@ -24,10 +24,22 @@ export default function Register () {
     });
 
     if (error) {
-      alert(error.message);
+      toast("注册失败", {
+        description: error.message,
+        action: {
+          label: "关闭",
+          onClick: () => console.log("关闭"),
+        },
+      });
       
     } else {
-      alert('注册成功，请去邮箱确认！');
+      toast("注册成功", {
+        description: "请前往邮箱验证",
+        action: {
+          label: "关闭",
+          onClick: () => console.log("关闭"),
+        },
+      });
       gotoLogin()
     }
   };

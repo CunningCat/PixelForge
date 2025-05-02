@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '@/store/modules/userStore';
 import { TheLastst } from './TheLastst';
 import { getLatestNews } from '@/services/getLatestNews';
-
+import GameReview from './GameReview';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -37,10 +37,12 @@ export default function Home() {
   return (
   <div className="min-h-screen bg-pixel bg-repeat text-white font-pixel ">
     <Header />
-    <main className="bannel flex flex-col gap-10">
+    <main className="bannel flex flex-col gap-20">
       <img className="w-full" src={pixelBanner} alt="Pixel Art Background" />
       <TheLastst />
+      <GameReview />
       <Projects />
+      
     </main>
     <About />
     <Footer />

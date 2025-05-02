@@ -34,10 +34,11 @@ export function TheLastst() {
   }, []);
 
   return(
-    <div className="flex h-screen flex-col items-center">
-      <div className="text-4xl">
+    <div className="flex flex-col ">
+      <div className="div-gap">
       最新动态
       </div>
+      
       {latestNews.length === 0 ? <div>加载中...</div>:
       <div className="flex mt-4 gap-20 mx-20">
       
