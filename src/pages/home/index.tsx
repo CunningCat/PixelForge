@@ -14,6 +14,8 @@ import GameReview from './GameReview';
 export default function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
+    //页面复位
+    window.scrollTo(0, 0);
     // 获取用户信息
     const userId = localStorage.getItem('userId') || '';
     if (userId) {
