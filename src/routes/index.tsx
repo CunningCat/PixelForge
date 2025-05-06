@@ -4,6 +4,7 @@ import Register from "@/pages/login/register";
 import Creator from "@/pages/creator";
 import { createBrowserRouter } from "react-router";
 import Content from "@/pages/content";
+import Profile from "@/pages/profile"
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +26,10 @@ const routes = createBrowserRouter([
   {
     path:'/content',
     element:<Content />,
+  },
+  {
+    path:'/profile',
+    element:<Profile />
   },
   ]);
   
