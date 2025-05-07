@@ -5,6 +5,7 @@ export default function  Creator() {
       <div className="flex items-center justify-center h-screen flex-col">
 
         <Editor />
+        
       </div>
       
     </div>

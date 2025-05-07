@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import  {RootState}  from '@/store';
 import { useDispatch } from "react-redux";
 import { setUid } from "@/store/modules/postStore";
-import { useNavigate } from "react-router";
+import {  useNavigate } from "react-router";
 import {toast} from "sonner"
 
 
@@ -26,8 +26,8 @@ export function Editor() {
     
     
     //创建帖子
-    createPost({PostInfo:post.postInfo})
-    .then((data) => {
+    const data =await createPost({PostInfo:post.postInfo});
+    
       if (data) {
         toast("发布成功", {
           description: "完成",
@@ -38,14 +38,14 @@ export function Editor() {
         });
       navigate('/');
       }
-    })
-    }
+      }
+    
   
 
 
   return (
-    <div className="w-[600px] h-[800px] bg-white flex flex-col rounded-lg shadow-lg relative px-6">
-      <div className=" mt-[24px] gap-[24px] flex">
+    <div className="w-150 h-200 bg-white flex flex-col rounded-lg shadow-lg relative px-6">
+      <div className=" mt-6 gap-6 flex">
         {/* 选项卡切换 */}
         {tabs.map((tab, index) => (
           <button
