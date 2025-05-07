@@ -9,6 +9,7 @@ const postSlice = createSlice({
       title: '',
       content: '',
       imageUrl: '',
+      author: '',
     }
   },
   reducers:{
@@ -27,9 +28,12 @@ const postSlice = createSlice({
     setUid(state, action: PayloadAction<string>) {
       state.postInfo.uid = action.payload;
     },
+    setAuthor(state, action: PayloadAction<string>) {
+      state.postInfo.author = action.payload;
+    }
   }
 })
 
-export const {setPost,setTitle,setContent,setImageUrl,setUid} = postSlice.actions
+export const {setPost,setTitle,setContent,setImageUrl,setUid,setAuthor} = postSlice.actions
 const reducer = postSlice.reducer
 export default reducer

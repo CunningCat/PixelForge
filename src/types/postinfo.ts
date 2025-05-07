@@ -3,4 +3,5 @@ export type PostInfo ={
   title: string;
   content: string;
   imageUrl: string;
+  author: string;
 }
