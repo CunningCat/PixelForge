@@ -10,7 +10,7 @@ export function UserAvatar( {user}: {user: User} ) {
   }
   return (
     <div onMouseEnter={handleHover} onMouseLeave={handleHover} className='hover: cursor-pointer w-15 h-15 flex items-center justify-center mt-0' >
-      <Avatar>
+      <Avatar className="w-3/4 h-3/4">
         <AvatarImage src= {user.avatar_url} />
       </Avatar>
       <DropdownMenu isOpen={isOpen}/>

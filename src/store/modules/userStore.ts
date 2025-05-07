@@ -17,11 +17,13 @@ const userSlice = createSlice({
     setUserName(state,action:PayloadAction<string>){
       state.userInfo.name = action.payload
     },
-    
+    setAvatar(state,action:PayloadAction<string>){
+      state.userInfo.avatar_url = action.payload
+    }
   }
 })
 
-export const {setUser,setUserName} = userSlice.actions
+export const {setUser,setUserName,setAvatar} = userSlice.actions
 const reducer = userSlice.reducer
 
 export default reducer
