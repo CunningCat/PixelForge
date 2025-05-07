@@ -8,7 +8,7 @@ export default async function createPost({PostInfo:postinfo}: {PostInfo: PostInf
       title: postinfo.title,
       content: postinfo.content,
       image_url: postinfo.imageUrl,
-      
+      author: postinfo.author,
     }
   ]);
   
