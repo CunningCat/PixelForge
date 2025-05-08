@@ -1,6 +1,6 @@
 import { supabase } from '@/lib/supabaseClient';
-import { PostInfo } from '@/types/postinfo';
-export default async function createPost({PostInfo:postinfo}: {PostInfo: PostInfo}) {
+import { PostUploadInfo } from '@/types/postuploadinfo';
+export default async function createPost({PostInfo:postinfo}: {PostInfo: PostUploadInfo}) {
   
   const { error } = await supabase.from('posts').insert([
     {

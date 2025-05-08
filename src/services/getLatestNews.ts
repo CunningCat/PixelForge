@@ -6,7 +6,7 @@ export async function getLatestNews(){
 
   const { data, error } = await supabase
     .from('posts')
-    .select('title, content, image_url,created_time')
+    .select('title, content, image_url,created_time,post_id:id,author')
     .order('created_time', { ascending: false })
     .limit(5);
 

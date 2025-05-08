@@ -24,7 +24,7 @@ export default function Header({ className = "" }:HeaderProps){
         <ul className="flex gap-10 items-center">
           
           <li><a href="#about" className="hover:text-yellow-400 hover:underline">About</a></li>
-          <li><button onClick={() =>navigate('/content')} className="hover:text-yellow-400 hover:underline cursor-pointer">Content</button></li>
+          <li><button onClick={() =>navigate('/post')} className="hover:text-yellow-400 hover:underline cursor-pointer">Post</button></li>
         
           <li><button  className="hover:text-yellow-400 hover:underline cursor-pointer"
           onClick={() =>navigate('/creator')}>创作者中心</button></li>

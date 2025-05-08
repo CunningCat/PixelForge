@@ -6,6 +6,8 @@ import { supabase } from '../../lib/supabaseClient';
 import { useState } from "react";
 import { useNavigate } from "react-router"
 import { toast } from "sonner"
+
+
 export default function Register () {
 
   const [email, setEmail] = useState('');

@@ -1,5 +1,5 @@
 import {createSlice,PayloadAction} from '@reduxjs/toolkit';
-import { PostInfo } from "@/types/postinfo";
+import { PostUploadInfo } from "@/types/postuploadinfo";
 
 const postSlice = createSlice({
   name:'post',
@@ -13,7 +13,7 @@ const postSlice = createSlice({
     }
   },
   reducers:{
-    setPost(state,action:PayloadAction<PostInfo>){
+    setPost(state,action:PayloadAction<PostUploadInfo>){
       state.postInfo = action.payload
     },
     setTitle(state, action: PayloadAction<string>) {

@@ -1,8 +1,38 @@
 import Header from "../home/Header"
-import "@/pages/content/css/index.css"
+import "@/pages/postdetail/css/index.css"
 import CommentBox from "@/components/commentbox/CommentBox"
 import Footer from "@/pages/home/Footer";
-export default function Content() {
+import { useParams } from "react-router"; 
+import {getPostInfo} from "@/services/getPostInfo";
+import { useEffect } from "react";
+import { toast } from "sonner";
+export default function PostDetail() {
+  const { id } = useParams();
+  useEffect(() => {
+    if(id)
+    {
+      getPostInfo(id)
+      .then((res) => {
+        if(res.isSuccess)
+        {
+          console.log(res.data);
+        }
+        else
+        {
+          toast("获取帖子失败", {
+            description: res.error,
+            action: {
+              label: "关闭",
+              onClick: () => console.log("关闭"),
+            },
+          });
+        }
+      })
+    }
+      
+  },[id]);
+  
+
   return (
     <div className="flex flex-col relative bg-white">
       <div className="sticky top-0 z-10">

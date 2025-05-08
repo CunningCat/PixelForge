@@ -8,7 +8,6 @@ import { fetchUserFromSupabase } from '@/services/fetchUser';
 import { useDispatch } from 'react-redux';
 import { setUser } from '@/store/modules/userStore';
 import { TheLastst } from './TheLastst';
-import { getLatestNews } from '@/services/getLatestNews';
 import GameReview from './GameReview';
 
 export default function Home() {
@@ -30,9 +29,7 @@ export default function Home() {
           }
         }
       )};
-  getLatestNews() .then((news) => {
-    console.log(news);
-  });
+  
   
   },[dispatch]) ;
   

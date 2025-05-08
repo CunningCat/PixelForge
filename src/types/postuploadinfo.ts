@@ -1,4 +1,4 @@
-export type PostInfo ={
+export type PostUploadInfo ={
   uid: string;
   title: string;
   content: string;
