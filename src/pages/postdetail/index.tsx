@@ -4,18 +4,28 @@ import CommentBox from "@/components/commentbox/CommentBox"
 import Footer from "@/pages/home/Footer";
 import { useParams } from "react-router"; 
 import {getPostInfo} from "@/services/getPostInfo";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { toast } from "sonner";
+import { PostDownloadInfo } from "@/types/postdownloadinfo";
 export default function PostDetail() {
   const { id } = useParams();
+  const [postInfo,setPostInfo] = useState<PostDownloadInfo>();
   useEffect(() => {
     if(id)
     {
       getPostInfo(id)
       .then((res) => {
-        if(res.isSuccess)
+        if(res.isSuccess && res.data )
         {
-          console.log(res.data);
+          setPostInfo({
+            title:res.data.title,
+            content:res.data.content,
+            image_url:res.data.image_url,
+            created_time:res.data.created_time,
+            post_id:res.data.id,
+            author:res.data.author
+          });
+          
         }
         else
         {
@@ -34,147 +44,29 @@ export default function PostDetail() {
   
 
   return (
-    <div className="flex flex-col relative bg-white">
-      <div className="sticky top-0 z-10">
-        <Header className="bg-white"/>
-      </div>
-      <div className="h-50 w-full relative" >
-        <img className="w-full h-full bg-amber-100"  alt="Pixel Art Background" />
-        <div className="absolute top-1/2 left-1/20">
-          <h1 className=" text-4xl">标题</h1>
-          <span className=" text-stone-500">发布时间:{}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者:{}</span>
+    <div className="flex flex-col relative bg-white min-h-screen">
+      <main className="flex-grow">
+        <div className="sticky top-0 z-10">
+          <Header className="bg-white"/>
         </div>
-      </div>
-      {/* 文章正文 */}
-      <article className="flex justify-center items-center px-40 pt-10 mx-auto">
-          <div className="text-2xl">
-          《CS2》上线初期，负面评价频出，玩家群体对其采用的起源2引擎多有诟病，Steam上的评价也是褒贬不一，饰品市场更是经历了大幅跳水。那段时期，这款游戏不仅口碑陷入低谷，核心玩家群体也大量流失，让人不禁担忧这个传奇IP是否真的走到了尽头。
-
-1.gif
-
-然而近期数据显示，《CS2》同时在线人数突破186万，远超《CSGO》巅峰时期水平。与此同时，饰品市场也迎来了回暖。以我个人库存为例，2019年购入的爪子刀，其价格已上涨至最初的7倍，投资回报率爆杀了我所有的股票。
-
-2.PNG
-
-好了，现在涨到28000了..
-
-值得关注的是，当前国内游戏市场中，《三角洲行动》《无畏契约》等游戏相继涌现，《CS2》面临的竞争环境远比《CSGO》时期更为严峻。但V社却在开局不利的情况下成功扭转局势，实现了市场表现的逆袭。
-
-3.gif
-
-《CS2》究竟是如何实现这一转变的？它又能否成为V社的下一个十年？今天我们就一起来简单聊聊。
-
-02
-转型阵痛期
-CSGO吧最常出现的2句话就是：明天大行动，后天起源2。
-
-4.PNG
-
-作为一款拥有十年运营历史的游戏，关于V社将更新起源2引擎的传闻数不胜数，这就与GTA6何时发布新预告一样，始终是玩家们热议的话题。
-
-毕竟起源2的诱惑实在是太大了。参考V社此前的《半衰期：爱莉克斯》和《DOTA2》，在迭代起源2之后，游戏的质感都有了显著的提升。
-
-如今我们知道，《CS2》中的手雷破烟、子弹穿烟等物理效果，正是得益于起源2引擎的技术支持。
-
-5.gif
-
-起源2引擎的更新，被视为能让《CS:GO》重获新生的关键，也因此备受玩家期待。诚然，许多玩家真心希望游戏能够不断优化、越来越好，但也有部分玩家，如笔者这般，脑子里只剩一个字——燃！
-
-6.png
-
-当V社首次正式公布《CS2》的消息时，引发巨大流量的并非玩家社区，而是各类第三方交易平台。当时的热度甚至致使平台服务器一度崩溃。
-
-7.png
-
-8.png
-
-结果有意思的却是，在2023年9月28日游戏正式更新《CS2》之后，游戏在线人数不仅没有增长，甚至连《CS:GO》时期的常规水平都难以维持，迎来了史诗级的滑铁卢。
-
-数据显示，10月同比下降10.8%，11月进一步下降16.6% 。
-
-9.png
-
-玩家社区中充斥着对游戏的吐槽。一方面，游戏存在诸多漏洞与灵异现象，如子弹消失、角色异常静止等，甚至连CF的传统艺能躺尸都有。
-
-10.png
-
-另一方面，许多玩家表示难以适应新的Subtick系统，认为弹道变化和压枪手感大不如前。
-
-除了普通玩家的不满，职业选手的竞技状态也受到严重影响。知名职业选手s1mple（被玩家称为 “简单男孩”）甚至在社交平台上公开批评《CS2》，表达强烈不满。
-
-11.png
-
-在那段时间，《CS2》可以说是完美诠释了什么叫做“内忧外患”。
-
-内部，游戏自身存在大量技术问题与玩家体验不佳的状况；外部，整个第一人称射击（FPS）游戏市场竞争愈发激烈。
-
-此前，《无畏契约》国服公测吸引了大量《CS》玩家，而后腾讯推出的《三角洲行动》进一步压缩了国内FPS游戏市场份额。
-
-在《CS2》发展最为艰难的时期，无论是《三角洲行动》《无畏契约》，还是面向下沉市场的新兴射击游戏，甚至是一些此前市场表现平平的老游戏，都借此机会巩固或拓展了自身的用户群体。
-
-但就像我们开头说的那样，如今已是2025年4月，当前《CS2》的在线人数已经爆杀了《CS:GO》时期的峰值。这不禁令人发问：“内忧”和“外患”，难不成都被V社给解决了吗？
-
-13.png
-
-03
-数据回暖！甚至超越GO时期的纪录
-纵观整个2024年，我们可以发现《CS2》有2个关键的增长点：
-
-2024年3月，游戏在线峰值提升13%；同年12月，峰值再度增长 11.5%。这两个增长节点分别与当年两场重大电竞赛事 ——Major锦标赛的举办时间相契合。
-
-14.png
-
-15.png
-
-Major锦标赛作为CS里最高级别的电竞赛事，历年来在举办期间均会带动游戏在线人数的增长。从理论层面来看，这种增长属于可预期范畴。
-
-但在笔者看来，2024年的电竞赛事对游戏玩家回流起到了显著的推动作用。
-
-16.gif
-
-一来，2024年CS赛事中出现了一个传奇人物，也就是Donk。
-
-这位出生于2007年、2023年出道的选手，在2024年2月的卡托维兹决赛中，凭借高达1.93的rating斩获冠军。
-
-17.gif
-
-同年年底的Major锦标赛上，Donk所在的Spirit战队也一路过关斩将夺得冠军。比赛期间，Donk不仅打出4次单局五杀，更上演了1V5的精彩操作。凭借出色的表现，他成为了Major历史上最年轻的冠军得主及赛事MVP，可以说是天才中的天才，人气王中的人气王。
-
-18.png
-
-这样的表现也让他成了自媒体手里的香饽饽，其操作切片一度在各种社媒的用户群里大量传播。
-
-另一方面，2024年Major锦标赛在上海举办，这是该赛事首次在亚洲落地。这一历史性时刻吸引了众多国内已流失的老玩家关注。除了见证Donk的封神之路，中国战队RA在赛场上的表现也令人瞩目，为观众带来诸多惊喜。
-
-19.gif
-
-从赛事规模到赛程编排，此次Major锦标赛均展现出高水准，其赛事配乐等细节至今仍令观众印象深刻。我现在还经常回放当时比赛叫暂停的BGM，真的非常的带劲。
-
-当然，Major锦标赛的举办也向众多已流失的玩家传递了《CS2》可玩的积极信号。
-
-20.png
-
-过去大家都吐槽V社是懒狗，也经常调侃V社只有3个员工，一个在给《DOTA2》做皮肤，剩下2个在夏威夷度假。
-
-确实，过去的《CS：GO》更新频率堪称灾难，我印象中最后一次真正意义上的大行动还是2017年的“九头蛇大行动”，V社至少做了点PVE副本，后来几年即便有大行动，也是非常的敷衍。
-
-21.png
-
-一年到头，最大的更新内容竟是以Major锦标赛期间的印花销售为主。
-
-22.png
-
-而《CS2》发布后，V社一改此前的更新节奏，游戏上线首月便进行14次更新，2024年全年更新日志内容也是多到不行。
-
-尽管游戏官方匹配模式中作弊问题依然存在，但在其他方面，《CS2》稳定性显著提升，起源2引擎的特性也被彻底地挖掘了出来。
-
-除了一开始说的烟雾效果，大大丰富了战术层面的策略，2024年底经典火车地图上线，着实让我震撼了一把，新增的天气系统使饰品呈现出逼真的水滴效果与光影变化，带来远超《CS:GO》的视觉体验。
-
-23.gif
+        {/* 图片和标题 */}
+        <div className="h-50 w-full relative" >
+          <img className="w-full h-full bg-amber-100"  alt="Pixel Art Background" src={postInfo?.image_url}/>
+          <div className="absolute top-1/2 left-1/20">
+            <h1 className=" text-4xl">{postInfo?.title}</h1>
+            <span className=" text-stone-500">发布时间:{postInfo?.created_time}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者:{postInfo?.author}</span>
           </div>
-      </article>
-      <hr className="w-full border-gray-300 mt-20  " />
-      <CommentBox />
+        </div>
+        {/* 文章正文 */}
+        <article className="flex justify-center items-center px-40 pt-10 mx-auto">
+            <div className="text-2xl">
+            {postInfo?.content}
+            </div>
+        </article>
+        <hr className="w-full border-gray-300 mt-20  " />
+        {/* 评论 */}
+        <CommentBox />
+      </main>
       <Footer />
     </div>
   )

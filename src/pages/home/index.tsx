@@ -36,8 +36,9 @@ export default function Home() {
   return (
   <div className="min-h-screen bg-pixel bg-repeat text-white font-pixel ">
     <Header />
-    <main className="bannel flex flex-col gap-20">
-      <img className="w-full" src={pixelBanner} alt="Pixel Art Background" />
+    <img className="w-full mb-20" src={pixelBanner} alt="Pixel Art Background" />
+    <main className="bannel flex flex-col gap-20 w-[85%] mx-auto ">
+      
       <TheLastst />
       <GameReview />
       <Projects />
