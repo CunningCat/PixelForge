@@ -47,15 +47,9 @@ export default function GameReview() {
   const gap = 120; // 卡片之间的距离 px
   const totalWidth = cardWidth + gap;
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-    
-  useEffect(() => {
-    startTimer();
-    return () => {
-      stopTimer(); // 清除定时器
-    };
-  }, []);
-
-  //开启定时器，鼠标移出时
+ 
+ 
+ //开启定时器，鼠标移出时
   const startTimer = () => {
     stopTimer();
     intervalRef.current = setInterval(() => {
@@ -69,6 +63,18 @@ export default function GameReview() {
       clearInterval(intervalRef.current);
     }
   };
+
+
+  useEffect(() => {
+    startTimer();
+    return () => {
+      stopTimer(); // 清除定时器
+    };
+  }, []);
+
+  
+  
+  
 
 
 

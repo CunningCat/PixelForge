@@ -9,7 +9,7 @@ export default function DropdownMenu({isOpen}: {isOpen: boolean}) {
       <button onClick={() => nav('/profile')} className="block cursor-pointer w-full text-center py-2 hover:text-orange-200">个人信息</button>
       <hr className="w-full border-slate-600 " />
       {/* 点击登出 */}
-      <button className="block w-full text-center py-2 hover:text-orange-200"
+      <button className="block w-full text-center py-2 hover:text-orange-200 cursor-pointer"
       onClick={async () => {localStorage.removeItem('userId');
         await supabase.auth.signOut();
         window.location.reload();
