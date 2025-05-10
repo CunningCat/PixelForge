@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import  {RootState}  from '@/store';
 import { UserAvatar } from "@/components/user/UserAvatar";
 import { useNavigate } from "react-router";
-
+import banner from "../../assets/banner.png"
 
 interface HeaderProps {
   className?: string;
@@ -15,12 +15,12 @@ export default function Header({ className = "" }:HeaderProps){
   const {user} = useSelector((state: RootState) => state);
   const navigate = useNavigate()
   return (
-    <header className={`py-6 px-4 flex justify-between items-center  bg-opacity-80 ${className}`}>
+    <header className={`py-6 px-4 flex justify-between items-center  bg-opacity-80 text-white ${className}`} style={{backgroundImage: `url(${banner})`, backgroundSize: 'cover'}}>
       <div className="flex items-center space-x-4 cursor-pointer" onClick={() =>navigate('/')}>
         <img src={logo} alt="logo" className="h-10 " />
         <h1 className="text-3xl">PixelForge</h1>
       </div>
-      <nav className="space-x-4 text-lg">
+      <nav className="space-x-4 text-lg ">
         <ul className="flex gap-10 items-center">
           
           <li><a href="#about" className="hover:text-yellow-400 hover:underline">About</a></li>
