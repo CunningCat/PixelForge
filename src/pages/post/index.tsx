@@ -12,21 +12,20 @@ export default function Post() {
     const fetchData = async () => {
       const res = await getLatestNews(4);
       if (res) {
-        toast("获取成功", { description: "完成" });
+        
         setPostList(res);
       } else {
-        toast("失败", { description: "获取失败" });
+        toast("失败", { description: "获取帖子失败。请稍后尝试" });
       }
     };
     fetchData();
   }, []);
 
-  
   return (
     <div className="flex flex-col bg-white min-h-screen">
       <Header />
       <main className="flex flex-col gap-10 w-[50%] mx-auto ">
-        {postList?postList.map((item) => <PostItem key={item.post_id} {...item} />)
+        {postList?postList.map((item) => <PostItem key={item.post_id} item={item}/>)
         : <div>加载中...</div>}
         
       </main>
