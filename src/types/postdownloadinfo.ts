@@ -5,4 +5,6 @@ export  type PostDownloadInfo = {
   image_url: string;
   created_time: string;
   author: string;
+  likes: number;
+  commentnum: number;
 };

@@ -4,4 +4,5 @@ export type PostUploadInfo ={
   content: string;
   imageUrl: string;
   author: string;
+  
 }
