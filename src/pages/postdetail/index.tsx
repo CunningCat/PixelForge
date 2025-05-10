@@ -23,7 +23,9 @@ export default function PostDetail() {
             image_url:res.data.image_url,
             created_time:res.data.created_time,
             post_id:res.data.id,
-            author:res.data.author
+            author:res.data.author,
+            likes:res.data.likes,
+            commentnum:res.data.commentnum
           });
           
         }
