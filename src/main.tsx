@@ -6,14 +6,15 @@ import { routes } from './routes'
 import store from './store'
 import { Provider } from 'react-redux'
 import { Toaster } from './components/ui/sonner'
-
+import GlobalInitializer from './components/GlobalInitializer'
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      
+      <GlobalInitializer />
       <RouterProvider router={routes} />
+      
       <Toaster />
     </Provider>
   </StrictMode>,
