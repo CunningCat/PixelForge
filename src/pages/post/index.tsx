@@ -22,9 +22,9 @@ export default function Post() {
   }, []);
 
   return (
-    <div className="flex flex-col bg-white min-h-screen">
+    <div className="flex flex-col bg-gray-50 min-h-screen">
       <Header />
-      <main className="flex flex-col gap-10 w-[50%] mx-auto ">
+      <main className="flex flex-col mt-10 gap-10 w-[50%] mx-auto ">
         {postList?postList.map((item) => <PostItem key={item.post_id} item={item}/>)
         : <div>加载中...</div>}
         

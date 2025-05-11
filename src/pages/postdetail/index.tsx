@@ -7,6 +7,7 @@ import {getPostInfo} from "@/services/getPostInfo";
 import { useEffect,useState } from "react";
 import { toast } from "sonner";
 import { PostDownloadInfo } from "@/types/postdownloadinfo";
+import { CommentList } from "@/components/commentbox/CommentList";
 
 
 export default function PostDetail() {
@@ -58,7 +59,7 @@ export default function PostDetail() {
           
           <div className="absolute top-1/2 left-1/20">
             <h1 className=" text-4xl">{postInfo?.title}</h1>
-            <span className=" text-stone-500">发布时间:{postInfo?.created_time}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者:{postInfo?.author}</span>
+            <span className=" text-stone-500 block mt-2">发布时间:{postInfo?.created_time}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者:{postInfo?.author}</span>
           </div>
         </div>
         {/* 文章正文 */}
@@ -75,6 +76,7 @@ export default function PostDetail() {
         <hr className="w-full border-gray-300 mt-20  " />
         {/* 评论 */}
         <CommentBox />
+        <CommentList />
       </main>
       <Footer />
     </div>
