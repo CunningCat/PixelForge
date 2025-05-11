@@ -7,6 +7,8 @@ import {getPostInfo} from "@/services/getPostInfo";
 import { useEffect,useState } from "react";
 import { toast } from "sonner";
 import { PostDownloadInfo } from "@/types/postdownloadinfo";
+
+
 export default function PostDetail() {
   const { id } = useParams();
   const [postInfo,setPostInfo] = useState<PostDownloadInfo>();
@@ -53,17 +55,22 @@ export default function PostDetail() {
         </div>
         {/* 图片和标题 */}
         <div className="h-50 w-full relative" >
-          <img className="w-full h-full bg-amber-100"  alt="Pixel Art Background" src={postInfo?.image_url}/>
+          
           <div className="absolute top-1/2 left-1/20">
             <h1 className=" text-4xl">{postInfo?.title}</h1>
             <span className=" text-stone-500">发布时间:{postInfo?.created_time}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者:{postInfo?.author}</span>
           </div>
         </div>
         {/* 文章正文 */}
-        <article className="flex justify-center items-center px-40 pt-10 mx-auto">
-            <div className="text-2xl">
-            {postInfo?.content}
+        <article className="flex flex-col justify-center items-center px-40 pt-10 mx-auto">
+            {postInfo?.image_url && 
+            <div className="flex justify-center items-center w-[80%] h-[80%] bg-gray-100">
+              <img className="" src={postInfo?.image_url} alt={postInfo?.image_url} />
             </div>
+            }
+            <p className="text-2xl text-left w-full">
+            {postInfo?.content}
+            </p>
         </article>
         <hr className="w-full border-gray-300 mt-20  " />
         {/* 评论 */}

@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
+import dayjs from "dayjs";
 
 export async function getPostInfo(id:string) {
   let isSuccess = false;
@@ -13,11 +14,17 @@ export async function getPostInfo(id:string) {
     .eq('id', id)
     .single();
 
+  
+
   if(error)
   {
     console.error('从 Supabase 获取最新帖子失败：', error.message);
     return {isSuccess,error:error.message};
   }
   isSuccess = true;
-  return {data,isSuccess};
+  const formattedData = {
+    ...data,
+    created_time : dayjs(data?.created_time).format('YYYY-MM-DD HH:mm:ss'),
+  };
+  return {data:formattedData ,isSuccess};
 }
