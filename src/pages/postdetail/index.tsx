@@ -11,13 +11,21 @@ import { CommentList } from "@/components/commentbox/CommentList";
 
 
 export default function PostDetail() {
-  const { id } = useParams();
+  const { post_id } = useParams();
   const [postInfo,setPostInfo] = useState<PostDownloadInfo>();
+  const [CommentListRefresh,SetCommentListRefresh] =useState(0)
+  
+
+  const handleRefreshCommentListKey = ()=>{
+    SetCommentListRefresh(CommentListRefresh+1);
+  } 
   useEffect(() => {
-    if(id)
+    
+    if(post_id)
     {
-      getPostInfo(id)
+      getPostInfo(post_id)
       .then((res) => {
+        
         if(res.isSuccess && res.data )
         {
           setPostInfo({
@@ -45,7 +53,7 @@ export default function PostDetail() {
       })
     }
       
-  },[id]);
+  },[post_id]);
   
 
   return (
@@ -75,8 +83,8 @@ export default function PostDetail() {
         </article>
         <hr className="w-full border-gray-300 mt-20  " />
         {/* 评论 */}
-        <CommentBox />
-        <CommentList />
+        <CommentBox post_id={post_id} refreshCommentList={handleRefreshCommentListKey}/>
+        <CommentList post_id={post_id} refreshCommentList={CommentListRefresh}/>
       </main>
       <Footer />
     </div>

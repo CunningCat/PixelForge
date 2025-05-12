@@ -33,7 +33,7 @@ const routes = createBrowserRouter([
     element:<Post />,
   },
   {
-    path: '/post/:id',
+    path: '/post/:post_id',
     element: <PostDetail />
   }
   ]);
