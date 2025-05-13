@@ -18,7 +18,7 @@ export default function PostItem( {item}:{item: PostDownloadInfo}) {
       <div className="flex flex-col gap-1 cursor-pointer"
       onClick={()=>navigate(`/post/${item.post_id}`)}>
         <div className="postitem_title text-3xl">{item.title}</div>
-        <div className="postitem_content">{item.content}</div>
+        <div className="postitem_content line-clamp-3">{item.content}</div>
         {item.image_url && <img className="w-40" src={item.image_url} alt={item.image_url} />}
         
         <div className="flex justify-end text-gray-300">
