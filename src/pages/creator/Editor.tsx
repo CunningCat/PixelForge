@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { setUid } from "@/store/modules/postStore";
 import {  useNavigate } from "react-router";
 import {toast} from "sonner"
-
+import { useAsyncLock } from "@/hooks/useAsynLock";
 
 
 //创作者编辑器
@@ -19,10 +19,13 @@ export function Editor() {
   const {userInfo} = useSelector((state:RootState) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {withLock,locked} = useAsyncLock();
   //设置uid
   dispatch(setUid(userInfo.uid));
   //发布
   const handlePost = async () => {
+    await withLock(async () =>{
+      
     
     
     //创建帖子
@@ -37,10 +40,11 @@ export function Editor() {
           },
         });
       navigate('/');
+      
       }
       }
     
-  
+  )}
 
 
   return (
@@ -72,7 +76,7 @@ export function Editor() {
       {activeIndex === 0 ? <TextImage /> : <Article />}
       <div className="flex mt-4 absolute bottom-5 right-5">
         <button className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-10 rounded-lg cursor-pointer"
-        onClick={handlePost}>
+        onClick={handlePost} disabled={locked}>
           发布
         </button>
       </div>

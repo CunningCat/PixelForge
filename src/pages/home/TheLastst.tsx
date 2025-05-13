@@ -43,8 +43,10 @@ export function TheLastst() {
         onClick={handleNavigate}>
           <img src={latestNews[0].image_url} ></img>
           <div className="news">最新消息</div>
-          <div className="text-xl">{latestNews[0].title}</div>
-          <div className="sub-headline">{latestNews[0].content}</div>
+          <div className="TheLatest_title text-2xl">{latestNews[0].title}</div>
+          <div className="sub-headline">
+            <p className="line-clamp-3">{latestNews[0].content}</p>
+            </div>
           <div className="time">{latestNews[0].created_time}</div>
         </div>
         <div className="w-1/2 h-1/2 flex flex-col gap-2 ">
@@ -52,8 +54,11 @@ export function TheLastst() {
             {latestNews.slice(1, latestNews.length).map((item, index) => (
               <li key={index} className="flex flex-col gap-2 mb-4">
                 <div className="cursor-pointer" onClick={() => navigate(`/post/${item.post_id}`)}>
-                  <div className="text-xl">{item.title}</div>
-                  <div className="sub-headline">{item.content}</div>
+                  <div className="TheLatest_title">{item.title}</div>
+                    <div className="sub-headline">
+                      <p className="line-clamp-3">{item.content}
+                      </p>
+                    </div>
                   <div className="time">{item.created_time}</div>
                 </div>
                 

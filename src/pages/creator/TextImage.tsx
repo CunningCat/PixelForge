@@ -29,9 +29,10 @@ export default function TextImage() {
       onClick={()=>handleClick()}
       >+</button>:
       <img src={imgUrl} alt="上传的图片" className="w-30 h-30 mt-3 rounded-lg" />}
-      {/* 输入标题 */}
+      
       <div className="mt-5 mx-auto bg-gray-200 h-[300px] rounded-lg">
-        <div className="pt-2 pl-2">
+        {/* 输入标题 */}
+        <div className="pt-2 pl-2 h-[30px]">
           <input type="text" placeholder="标题" className="focus:outline-none w-full"
           onChange={e => dispatch(setTitle(e.target.value))}>
           </input>
@@ -39,8 +40,8 @@ export default function TextImage() {
         <hr className="w-full border-gray-300 mt-2  " />
 
         {/* 输入正文 */}
-        <div className="pt-2 pl-2">
-          <textarea placeholder="正文" maxLength={500} className="focus:outline-none w-full resize-none" 
+        <div className="pt-2 pl-2 h-[260px]">
+          <textarea placeholder="正文" maxLength={500} className="focus:outline-none w-full h-full resize-none" 
           onChange={e => dispatch(setContent(e.target.value))}>
           </textarea>
         </div>

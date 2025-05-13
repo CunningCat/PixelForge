@@ -16,7 +16,7 @@ export default function Article() {
         <hr className="w-full border-gray-300 mt-2  " />
         {/* 正文 */}
         <div className="pt-2 pl-2">
-          <textarea placeholder="正文" maxLength={500} className="focus:outline-none w-full resize-none" 
+          <textarea placeholder="正文" maxLength={500} className="focus:outline-none w-full h-[450px] resize-none" 
           onChange={e => dispatch(setContent(e.target.value))}>
           </textarea>
         </div>
