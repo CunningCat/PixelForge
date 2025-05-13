@@ -9,7 +9,7 @@ import { setUid } from "@/store/modules/postStore";
 import {  useNavigate } from "react-router";
 import {toast} from "sonner"
 import { useAsyncLock } from "@/hooks/useAsynLock";
-
+import { Undo2 } from "lucide-react";
 
 //创作者编辑器
 export function Editor() {
@@ -49,7 +49,11 @@ export function Editor() {
 
   return (
     <div className="w-150 h-200 bg-white flex flex-col rounded-lg shadow-lg relative px-6">
-      <div className=" mt-6 gap-6 flex">
+      <div className="flex bg-gray-200 rounded-2xl p-2 w-fit mt-5 cursor-pointer" onClick={()=>navigate(-1)}>
+        <Undo2 />
+        <span className="w-full">返回</span>
+      </div>
+      <div className=" mt-3 gap-6 flex">
         {/* 选项卡切换 */}
         {tabs.map((tab, index) => (
           <button
