@@ -22,9 +22,6 @@ export default function Article() {
         </div>
         
       </div>
-      <div>
-          <span className="mr-2">关联社区</span>
-          <button className="bg-gray-200 w-25 h-10 text-l mt-2 text-gray-500 cursor-pointer rounded-lg">+添加社区</button>
-        </div>
+      
     </div>
   )}

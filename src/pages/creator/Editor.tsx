@@ -12,7 +12,7 @@ import { useAsyncLock } from "@/hooks/useAsynLock";
 import { Undo2 } from "lucide-react";
 
 //创作者编辑器
-export function Editor() {
+export function Editor({setshowSelectCommunity}:{setshowSelectCommunity:()=>void}) {
   const tabs = ["发布图文", "发布文章"];
   const [activeIndex, setActiveIndex] = useState(0);
   const {post} = useSelector((state:RootState) => state);
@@ -78,12 +78,18 @@ export function Editor() {
         }}
       />
       {activeIndex === 0 ? <TextImage /> : <Article />}
+      <div>
+        <span className="mr-2">关联社区</span>
+        <button className="bg-gray-200 w-25 h-10 text-l mt-2 text-gray-500 cursor-pointer rounded-lg"
+        onClick={()=>setshowSelectCommunity()}>+添加社区</button>
+      </div>
       <div className="flex mt-4 absolute bottom-5 right-5">
         <button className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-10 rounded-lg cursor-pointer"
         onClick={handlePost} disabled={locked}>
           发布
         </button>
       </div>
+      
     </div>
   )
 }

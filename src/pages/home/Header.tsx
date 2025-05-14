@@ -15,7 +15,7 @@ export default function Header({ className = "" }:HeaderProps){
   const {user} = useSelector((state: RootState) => state);
   const navigate = useNavigate();
   return (
-    <header className={`py-6 px-4 flex justify-between items-center  bg-opacity-80 text-white ${className}`} style={{backgroundImage: `url(${banner})`, backgroundSize: 'cover'}}>
+    <header className={`py-2 px-4 flex justify-between items-center  bg-opacity-80 text-white ${className}`} style={{backgroundImage: `url(${banner})`, backgroundSize: 'cover'}}>
       <div className="flex items-center space-x-4 cursor-pointer" onClick={() =>navigate('/')}>
         <img src={logo} alt="logo" className="h-10 " />
         <h1 className="text-3xl">PixelForge</h1>
