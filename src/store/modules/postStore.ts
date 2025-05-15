@@ -10,11 +10,12 @@ const postSlice = createSlice({
       content: '',
       imageUrl: '',
       author: '',
+      community:'',
     }
   },
   reducers:{
     setPost(state,action:PayloadAction<PostUploadInfo>){
-      state.postInfo = action.payload
+      state.postInfo = {...action.payload,community:state.postInfo.community}
     },
     setTitle(state, action: PayloadAction<string>) {
       state.postInfo.title = action.payload;
@@ -30,10 +31,13 @@ const postSlice = createSlice({
     },
     setAuthor(state, action: PayloadAction<string>) {
       state.postInfo.author = action.payload;
-    }
+    },
+    setCommunity(state, action: PayloadAction<string>) {
+      state.postInfo.community = action.payload;
+    },
   }
 })
 
-export const {setPost,setTitle,setContent,setImageUrl,setUid,setAuthor} = postSlice.actions
+export const {setPost,setTitle,setContent,setImageUrl,setUid,setAuthor,setCommunity} = postSlice.actions
 const reducer = postSlice.reducer
 export default reducer

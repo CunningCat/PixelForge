@@ -9,6 +9,7 @@ export default async function createPost({PostInfo:postinfo}: {PostInfo: PostUpl
       content: postinfo.content,
       image_url: postinfo.imageUrl,
       author: postinfo.author,
+      community_category:postinfo.community
     }
   ]);
   

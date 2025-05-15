@@ -1,33 +1,33 @@
-import { useState } from "react";
+import {  useState } from "react";
 import  TextImage  from "./TextImage";
 import  Article  from "./Article";
 import createPost from "@/services/createPost";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import  {RootState}  from '@/store';
-import { useDispatch } from "react-redux";
 import { setUid } from "@/store/modules/postStore";
 import {  useNavigate } from "react-router";
 import {toast} from "sonner"
 import { useAsyncLock } from "@/hooks/useAsynLock";
-import { Undo2 } from "lucide-react";
+import { Undo2,X } from "lucide-react";
+import { setCommunity } from "@/store/modules/postStore";
 
 //创作者编辑器
 export function Editor({setshowSelectCommunity}:{setshowSelectCommunity:()=>void}) {
   const tabs = ["发布图文", "发布文章"];
   const [activeIndex, setActiveIndex] = useState(0);
+  
   const {post} = useSelector((state:RootState) => state);
   const {userInfo} = useSelector((state:RootState) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {withLock,locked} = useAsyncLock();
+  
   //设置uid
   dispatch(setUid(userInfo.uid));
-  //发布
+  //发布帖子
   const handlePost = async () => {
     await withLock(async () =>{
-      
-    
-    
+
     //创建帖子
     const data =await createPost({PostInfo:post.postInfo});
     
@@ -45,7 +45,11 @@ export function Editor({setshowSelectCommunity}:{setshowSelectCommunity:()=>void
       }
     
   )}
-
+  //取消选择社区
+  const cancelSelectCommunity = () => {
+    dispatch(setCommunity(''));
+   
+  }
 
   return (
     <div className="w-150 h-200 bg-white flex flex-col rounded-lg shadow-lg relative px-6">
@@ -80,8 +84,20 @@ export function Editor({setshowSelectCommunity}:{setshowSelectCommunity:()=>void
       {activeIndex === 0 ? <TextImage /> : <Article />}
       <div>
         <span className="mr-2">关联社区</span>
+        {post.postInfo.community===''?
         <button className="bg-gray-200 w-25 h-10 text-l mt-2 text-gray-500 cursor-pointer rounded-lg"
-        onClick={()=>setshowSelectCommunity()}>+添加社区</button>
+        onClick={()=>setshowSelectCommunity()}>+添加社区
+        </button>:
+        <div className="inline-block h-10 text-l mt-2 bg-gray-200 text-gray-500 cursor-pointer rounded-lg" onClick={() => cancelSelectCommunity()}>
+          <div className="flex items-center justify-between h-full pl-2">
+            <button className="h-full flex items-center">
+              {post.postInfo.community}
+            </button>
+            <X className="inline" />
+          </div>
+        </div>
+        }
+        
       </div>
       <div className="flex mt-4 absolute bottom-5 right-5">
         <button className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-10 rounded-lg cursor-pointer"

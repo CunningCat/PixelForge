@@ -7,11 +7,14 @@ import ChooseCommunity from "./ChooseCommunity";
 
 export default function  Creator() {
   const {userInfo} = useSelector((state:RootState) => state.user);
+  
   const dispatch = useDispatch();
   const [isShowSelectCommunity, setIsShowSelectCommunity] = useState(false);
   useEffect(() => {
+    
     if(userInfo.name)
       dispatch(setAuthor(userInfo.name));
+   
   })
 
   const showSelectCommunity = () => {
