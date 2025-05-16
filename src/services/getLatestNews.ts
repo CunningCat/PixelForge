@@ -12,7 +12,7 @@ export async function getLatestNews(offset = 0, itemnum = 5) {
 
   if (error) {
     console.error('从 Supabase 获取最新帖子失败：', error.message);
-    return null;
+    return [];
   }
   //对返回的时间进行格式化处理
   const formattedData = data.map(item => {
