@@ -26,6 +26,17 @@ export function Editor({setshowSelectCommunity}:{setshowSelectCommunity:()=>void
   dispatch(setUid(userInfo.uid));
   //发布帖子
   const handlePost = async () => {
+    if (post.postInfo.title===''|| post.postInfo.content==='')
+    {
+      toast("标题与内容不能为空",{
+          
+          action: {
+            label: "关闭",
+            onClick: () => console.log("关闭"),
+          },
+        });
+      return;
+    }
     await withLock(async () =>{
 
     //创建帖子
@@ -99,7 +110,7 @@ export function Editor({setshowSelectCommunity}:{setshowSelectCommunity:()=>void
         }
         
       </div>
-      <div className="flex mt-4 absolute bottom-5 right-5">
+      <div className="flex mt-4 absolute bottom-10 right-5">
         <button className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-10 rounded-lg cursor-pointer"
         onClick={handlePost} disabled={locked}>
           发布
