@@ -5,9 +5,10 @@
   align-items: center;
   text-align: center;
   cursor: pointer;
+  color: #71767b;
   font-size: var(--text-2xl) /* 1.5rem = 24px */;
   line-height: var(--tw-leading, var(--text-2xl--line-height));
 }
 .articleslist:hover{
-  background: #e5e5e5;
+  background-color: #e5e5e524;
 }

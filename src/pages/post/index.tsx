@@ -25,7 +25,7 @@ export default function Post() {
     <div className="flex flex-col bg-gray-50 min-h-screen">
       <Header />
       <main className="flex flex-col mt-10 gap-10 w-[50%] mx-auto ">
-        {postList?postList.map((item) => <PostItem key={item.post_id} item={item}/>)
+        {postList?postList.map((item) => <PostItem className="bg-gray-100" key={item.post_id} item={item}/>)
         : <div>加载中...</div>}
         
       </main>

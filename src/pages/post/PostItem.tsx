@@ -2,10 +2,10 @@ import { PostDownloadInfo } from "@/types/postdownloadinfo"
 import { useNavigate } from "react-router"
 import { ThumbsUp,Ellipsis } from "lucide-react";
 import { MessageSquare } from "lucide-react";
-export default function PostItem( {item}:{item: PostDownloadInfo}) {
+export default function PostItem( {item,className}:{item: PostDownloadInfo,className?:string} ) {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col bg-white gap-2 p-2 rounded-2xl">
+    <div className={`flex flex-col  gap-2 p-2 rounded-2xl ${className}`}>
       <div className="postitem_author flex justify-between">
         <div className="">
           <img></img>

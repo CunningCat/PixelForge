@@ -1,7 +1,6 @@
 import Header from "../home/Header";
 import defaultimg from "@/assets/mine-avater.svg";
 import fixImg from "@/assets/fix.png";
-import UserArticlesList from "./UserArticlesList";
 import { useSelector,useDispatch } from "react-redux";
 import { RootState } from "@/store";
 import { updateUserName } from "@/services/updateUserName";
@@ -10,9 +9,10 @@ import { toast } from "sonner"
 import { setUserName,setAvatar } from "@/store/modules/userStore";
 import { useEffect } from "react";
 import updateUserAvatar from "@/services/updateUserAvatar";
-
-
-
+import PostItem from "../post/PostItem";
+import getSelfPost from "@/services/getSelfPost";
+import { PostDownloadInfo } from "@/types/postdownloadinfo";
+import ProfilePostsSelect from "./ProfilePostsSelect";
 export default function Profile(){
   const {user} = useSelector((state: RootState) => state);
   //用于切换编辑用户名的标签
@@ -20,7 +20,11 @@ export default function Profile(){
   const [touchAvatar, setTouchAvatar] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
+  const [postList, setPostList] = useState<PostDownloadInfo[] | null>([]);
   
+
+
+
   //点击编辑按钮，切换为输入框，再次点击，提交输入内容到后台进行更新
   async function handleUpdateUserName (newName: string){
     if(!isEditing)
@@ -80,6 +84,20 @@ export default function Profile(){
     inputRef.current?.focus();
     }
   }, [isEditing]);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getSelfPost(user.userInfo.uid);
+      if(res)
+      {
+        setPostList(res);
+      }
+      
+    };
+    fetchData();
+  }, [user?.userInfo?.uid]);
+
   return (
     <div className="flex flex-col ">
       <Header className="text-white"/>
@@ -114,7 +132,16 @@ export default function Profile(){
           </div>
         </div>
       </div>
-      <UserArticlesList/>
+      <ProfilePostsSelect />
+      {postList?
+      <div className="flex flex-col gap-5 mx-40 bg-black">
+        {postList.map((item) => <div><PostItem className="black text-white bo" key={item.post_id} item={item}/>
+        <hr className="text-gray-200"/>
+        </div>)}
+        
+      </div>
+      :
+      <div className="text-2xl mx-auto">暂时没有更多帖子</div>}
     </div>
     
   );
