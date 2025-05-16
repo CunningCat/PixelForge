@@ -17,5 +17,5 @@ createRoot(document.getElementById('root')!).render(
       
       <Toaster />
     </Provider>
-  </StrictMode>,
+  </StrictMode>
 )
