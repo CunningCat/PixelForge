@@ -10,7 +10,7 @@ export default function Post() {
   const [postList, setPostList] = useState<PostDownloadInfo[] | null>([]);
   useEffect(() => {
     const fetchData = async () => {
-      const res = await getLatestNews(4);
+      const res = await getLatestNews();
       if (res) {
         
         setPostList(res);

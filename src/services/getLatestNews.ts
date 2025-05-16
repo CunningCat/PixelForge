@@ -1,14 +1,14 @@
 import { supabase } from "@/lib/supabaseClient";
 import dayjs from "dayjs";
 
-export async function getLatestNews(itemnum = 5) {
+export async function getLatestNews(offset = 0, itemnum = 5) {
   
-
+ 
   const { data, error } = await supabase
     .from('posts')
     .select('title, content, image_url,created_time,post_id:id,author,commentnum,likes')
     .order('created_time', { ascending: false })
-    .limit(itemnum);
+    .range(offset, offset +itemnum -1);
 
   if (error) {
     console.error('从 Supabase 获取最新帖子失败：', error.message);
