@@ -13,6 +13,8 @@ import PostItem from "../post/PostItem";
 import getSelfPost from "@/services/getSelfPost";
 import { PostDownloadInfo } from "@/types/postdownloadinfo";
 import ProfilePostsSelect from "./ProfilePostsSelect";
+import InfiniteScroll from "@/components/InfiniteScrollProps";
+
 export default function Profile(){
   const {user} = useSelector((state: RootState) => state);
   //用于切换编辑用户名的标签
@@ -20,10 +22,10 @@ export default function Profile(){
   const [touchAvatar, setTouchAvatar] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
-  const [postList, setPostList] = useState<PostDownloadInfo[] | null>([]);
-  
-
-
+  const [postList, setPostList] = useState<PostDownloadInfo[] >([]);
+  const [hasMore, setHasMore] = useState(true);
+  const offset =useRef(0);
+  const [loading, setLoading] = useState(false);
 
   //点击编辑按钮，切换为输入框，再次点击，提交输入内容到后台进行更新
   async function handleUpdateUserName (newName: string){
@@ -85,17 +87,37 @@ export default function Profile(){
     }
   }, [isEditing]);
 
+  const fetchData = async () => {
+    const uid = user?.userInfo?.uid;
+    if (!hasMore) {
+      return;
+    }
+    if (loading) {
+      return;
+    }
+    
+    if (!uid) return;
+    setLoading(true);
+    const res = await getSelfPost(uid,offset.current);
+    if (res && res.length >= 0) {
+        setPostList(prev => [...prev, ...res]);
+        offset.current += res.length;
+        console.log(offset.current,res.length);
+         if (res.length < 5) {
+          setHasMore(false); // 已经没有更多了
+      }
+      }
+      setLoading(false);
+    
+  };
+
+  
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await getSelfPost(user.userInfo.uid);
-      if(res)
-      {
-        setPostList(res);
-      }
-      
-    };
+    if (user?.userInfo?.uid) {
     fetchData();
+  }
+    
   }, [user?.userInfo?.uid]);
 
   return (
@@ -133,15 +155,17 @@ export default function Profile(){
         </div>
       </div>
       <ProfilePostsSelect />
-      {postList?
+      {postList &&
       <div className="flex flex-col gap-5 mx-40 bg-black">
         {postList.map((item) => <div><PostItem className="black text-white bo" key={item.post_id} item={item}/>
         <hr className="text-gray-200"/>
         </div>)}
         
       </div>
-      :
-      <div className="text-2xl mx-auto">暂时没有更多帖子</div>}
+      }
+      
+      {hasMore? <InfiniteScroll onReachBottom={fetchData} />:
+      <div className="flex justify-center items-center h-20 text-l text-gray-500">-----------没有更多了-----------</div>}
     </div>
     
   );
