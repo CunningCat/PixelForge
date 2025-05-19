@@ -26,7 +26,8 @@ const routes = createBrowserRouter([
   },
   {
     path:'/profile',
-    element:<Profile />
+    element:<Profile />,
+    
   },
   {
     path:'/post',

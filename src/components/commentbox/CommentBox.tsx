@@ -1,25 +1,79 @@
 import { Avatar,AvatarImage } from "../ui/avatar"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThumbsUp } from "lucide-react";
 import addComment from "@/services/addComment";
 import { useRef } from "react";
 import { toast } from "sonner";
+import { likePost } from "@/services/likePosts";
+import { unlikePost } from "@/services/unlikePosts";
+import { queryLike } from "@/services/queryLike";
+
+
 export default function CommentBox({post_id,refreshCommentList }:{post_id:string | undefined,refreshCommentList:()=>void}) {
   const {user} = useSelector((state: RootState) => state);
   const [commentNum, setCommentNum] = useState(0);
   const [isOpen, setIsOpen] = useState(false)
   const [liked, setLiked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const commentRef = useRef<HTMLTextAreaElement>(null);
   const handleCommentNum = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentNum(e.target.value.length);
   }
   const handleIsClick = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-  if (e.type === 'focus') {
-    setIsOpen(true);
+    if (e.type === 'focus') {
+      setIsOpen(true);
+    }
+  };
+
+  //点赞
+  const handleLike = async () => {
+    if(isLoading)
+    {
+      return;
+    }
+    if(!user.userInfo.uid)
+    {
+      toast("请先登录");
+      return;
+    }
+    if(!post_id)
+    {
+      toast("无法点赞");
+      return;
+    }
+    setIsLoading(true);
+    if (liked) {
+      const res = await unlikePost(post_id,user.userInfo.uid);
+      if(res.success)
+      {
+        toast("取消点赞成功");
+        setLiked(false);
+      }
+      else if(res.error)
+      {
+        toast("取消点赞失败",{
+          description:res.error
+        });
+      }
+    }
+    else{
+      const res = await likePost(post_id,user.userInfo.uid);
+      if(res.success)
+      {
+        toast("点赞成功");
+        setLiked(true);
+      }
+      else if(res.error)
+      {
+        toast("点赞失败",{
+          description:res.error
+        });
+      }
+    }
+    setIsLoading(false);
   }
-};
   // 发表评论
    async function  handlePostComment(){
     if(commentNum === 0)
@@ -44,7 +98,19 @@ export default function CommentBox({post_id,refreshCommentList }:{post_id:string
       toast("评论失败");
     }
   }
-
+  useEffect(() => {
+    const getLikeInfo = async () => {
+      if(!post_id)
+      {
+        return;
+      }
+      const res = await queryLike(post_id,user.userInfo.uid);
+      if (!res.error) {
+        setLiked(res.success);
+      }
+    }
+    getLikeInfo();
+  },[]);
   return (
     <div className=" flex flex-col  mx-40 mt-10" >
       <div className="flex ">
@@ -61,7 +127,7 @@ export default function CommentBox({post_id,refreshCommentList }:{post_id:string
         onClick={handlePostComment}>发表</button>
       </span>}
       <div className="flex mt-2">
-        <div className={`cursor-pointer  items-center flex ml-10 bg-gray-200 p-2 rounded-full ${liked ? "text-white bg-red-400" : "text-gray-500"}`} onClick={() => setLiked(!liked)} >
+        <div className={`cursor-pointer  items-center flex ml-10 bg-gray-200 p-2 rounded-full ${liked ? "text-white bg-red-400" : "text-gray-500"} ${isLoading ? 'pointer-events-none opacity-50' : ''}`} onClick={() => handleLike()} >
           <ThumbsUp className={`w-5 h-5  `}/>
           <span className="ml-2  ">点赞</span>
         </div>
