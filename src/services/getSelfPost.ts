@@ -5,7 +5,7 @@ export default async function getSelfPost( uid:string ,offset = 0, itemnum = 5)
   
   const { data, error } = await supabase
     .from('posts')
-    .select('title, content, image_url,created_time,post_id:id,author,commentnum,likes')
+    .select('title, content, image_url,created_time,post_id:id,author,commentnum,likes,community_category')
     .eq('user_id', uid)
     .order('created_time', { ascending: false })
     .range(offset, offset +itemnum -1);

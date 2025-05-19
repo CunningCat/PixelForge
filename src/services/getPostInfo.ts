@@ -10,7 +10,7 @@ export async function getPostInfo(id:string) {
   }
   const { data, error } = await supabase
     .from('posts')
-    .select('title, content, image_url,created_time,id,author,likes,commentnum')
+    .select('title, content, image_url,created_time,id,author,likes,commentnum,community_category')
     .eq('id', id)
     .single();
 

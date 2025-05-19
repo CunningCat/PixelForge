@@ -36,7 +36,8 @@ export default function PostDetail() {
             post_id:res.data.id,
             author:res.data.author,
             likes:res.data.likes,
-            commentnum:res.data.commentnum
+            commentnum:res.data.commentnum,
+            community_category:res.data.community_category
           });
           
         }
@@ -73,7 +74,7 @@ export default function PostDetail() {
         {/* 文章正文 */}
         <article className="flex flex-col justify-center items-center px-40 pt-10 mx-auto">
             {postInfo?.image_url && 
-            <div className="flex justify-center items-center w-[80%] h-[80%] bg-gray-100">
+            <div className="flex justify-center items-center w-100  bg-gray-100">
               <img className="" src={postInfo?.image_url} alt={postInfo?.image_url} />
             </div>
             }
@@ -81,7 +82,14 @@ export default function PostDetail() {
             {postInfo?.content}
             </p>
         </article>
-        <hr className="w-full border-gray-300 mt-20  " />
+        {postInfo?.community_category &&
+        <div className="h-10 ml-40 mt-10">
+          <div className="flex items-center p-2">
+            <span className="bg-gray-100 p-2 rounded-2xl"># {postInfo?.community_category}</span>
+          </div>
+        </div>}
+        {/* 分割线 */}
+        <hr className="w-full border-gray-300 mt-10  " />
         {/* 评论 */}
         <CommentBox post_id={post_id} refreshCommentList={handleRefreshCommentListKey}/>
         <CommentList post_id={post_id} refreshCommentList={CommentListRefresh}/>

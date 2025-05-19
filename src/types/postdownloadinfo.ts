@@ -7,4 +7,5 @@ export  type PostDownloadInfo = {
   author: string;
   likes: number;
   commentnum: number;
+  community_category: string;
 };
