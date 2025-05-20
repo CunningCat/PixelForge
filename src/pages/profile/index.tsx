@@ -26,6 +26,7 @@ export default function Profile(){
   const [hasMore, setHasMore] = useState(true);
   const offset =useRef(0);
   const [loading, setLoading] = useState(false);
+  const isButtonClickedRef = useRef(false);
 
   //点击编辑按钮，切换为输入框，再次点击，提交输入内容到后台进行更新
   async function handleUpdateUserName (newName: string){
@@ -144,10 +145,19 @@ export default function Profile(){
             
             <div className="text-2xl text-white absolute top-full -translate-y-15 mt-2 flex items-center justify-center">
               {/* 名字显示区和输入框 */}
-              {isEditing?<input type="text" maxLength={15} className="focus:outline-none bg-gray-50/10" onBlur={() => setIsEditing(false)} ref={inputRef} defaultValue={user.userInfo.name}></input>:
+              {isEditing?<input type="text" maxLength={15} className="focus:outline-none bg-gray-50/10"  
+              onBlur={()=>{if (!isButtonClickedRef.current) {
+                setIsEditing(false);
+              }}} 
+              ref={inputRef} defaultValue={user.userInfo.name}></input>:
               <span>{user.userInfo.name}</span>}
               <button className=" ml-2 w-10 h-10 bg-cover cursor-pointer" style={{ backgroundImage: `url(${fixImg})` }}
-              onClick={() => handleUpdateUserName(inputRef.current?.value || '')}>
+              onClick={() => {handleUpdateUserName(inputRef.current?.value || '');
+                isButtonClickedRef.current = false;}}
+              onMouseDown={() => {
+              // 鼠标按下就标记，确保 blur 不会触发隐藏
+              isButtonClickedRef.current = true;
+              }}>
               </button>
               
             </div>

@@ -26,6 +26,15 @@ export function Editor({setshowSelectCommunity}:{setshowSelectCommunity:()=>void
   dispatch(setUid(userInfo.uid));
   //发布帖子
   const handlePost = async () => {
+    if (userInfo.uid===''){
+      toast("请先登录",{
+          action: {
+            label: "关闭",
+            onClick: () => console.log("关闭"),
+          },
+      })
+      return;
+    }
     if (post.postInfo.title===''|| post.postInfo.content==='')
     {
       toast("标题与内容不能为空",{

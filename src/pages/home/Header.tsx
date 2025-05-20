@@ -5,6 +5,8 @@ import  {RootState}  from '@/store';
 import { UserAvatar } from "@/components/user/UserAvatar";
 import { useNavigate } from "react-router";
 import banner from "../../assets/banner.png"
+import { toast } from "sonner"
+import { useEffect,useState } from "react";
 
 interface HeaderProps {
   className?: string;
@@ -14,6 +16,23 @@ interface HeaderProps {
 export default function Header({ className = "" }:HeaderProps){
   const {user} = useSelector((state: RootState) => state);
   const navigate = useNavigate();
+  const [showLoginButton, setShowLoginButton] = useState(true);
+  const createHandler = () => {
+    if (user.userInfo.uid==='')
+      toast("请先登录",{
+          action: {
+            label: "关闭",
+            onClick: () => console.log("关闭"),
+          },
+      })
+    else
+    navigate('/creator')};
+  useEffect(() => {
+    if (user.userInfo.uid==='')
+      setShowLoginButton(true);
+    else
+      setShowLoginButton(false);
+  },[user.userInfo.uid])
   return (
     <header className={`py-2 px-4 h-20 flex justify-between items-center  bg-opacity-80 text-white ${className}`} style={{backgroundImage: `url(${banner})`, backgroundSize: 'cover'}}>
       <div className="flex items-center space-x-4 cursor-pointer" onClick={() =>navigate('/')}>
@@ -27,9 +46,9 @@ export default function Header({ className = "" }:HeaderProps){
           <li><button onClick={() =>navigate('/post')} className="hover:text-yellow-400 hover:underline cursor-pointer">最新帖子</button></li>
         
           <li><button  className="hover:text-yellow-400 hover:underline cursor-pointer"
-          onClick={() =>navigate('/creator')}>创作者中心</button></li>
+          onClick={createHandler}>创作者中心</button></li>
           {/* userinfo存在则显示头像，否则显示注册登录按钮 */}
-          {user.userInfo.uid!==''? <UserAvatar user={user.userInfo}/> :<ButtonRegister />}
+          {showLoginButton? <ButtonRegister />:<UserAvatar user={user.userInfo}/> }
         </ul>
         
       </nav>

@@ -11,10 +11,11 @@ export default function Login () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const gotoRegister = () => {
-    navigate('/register')
+    navigate('/register');
   }
   const gotoHome = () => {
-    navigate('/')
+    navigate('/');
+    window.location.reload();
   }
 
   //登录验证逻辑
@@ -38,7 +39,7 @@ export default function Login () {
       });
       //登录成功后存入用户id到localStorage
       localStorage.setItem('userId', JSON.stringify(data.user.id));
-      gotoHome()
+      gotoHome();
     }
   };
 
