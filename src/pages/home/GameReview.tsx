@@ -1,9 +1,13 @@
 
 // import { useState } from "react";
-import logo from "../../assets/LOGO1.png"
+import horizon from "@/assets/horizon.png"
 import arrowleft from "@/assets/arrow-left.png"
 import arrowright from "../../assets/arrow-right.png"
+import cs2 from "../../assets/csgo2.png"
+import last from "../../assets/last.jpg"
+import light from "../../assets/light.jpg"
 import { useEffect, useState,useRef } from "react";
+
 
 
 // interface Review {
@@ -17,28 +21,28 @@ export default function GameReview() {
   
   const reviewList =[
     {
-      "image_url": {logo},
-      "title": "Elden Ring: A Masterpiece of Open-World Design",
-      "subtitle": "FromSoftware's most ambitious title yet",
-      "review": "8.0"
+      "image_url": horizon,
+      "title": "《极限竞速：地平线5》",
+      "subtitle": "目前最优秀的开放世界赛车游戏，迎来了最盛大的落幕仪式",
+      "review": "8.5"
     },
     {
-      "image_url": {logo},
-      "title": "Elden Ring: A Masterpiece of Open-World Design",
-      "subtitle": "FromSoftware's most ambitious title yet",
-      "review": "8.0"
+      "image_url": cs2,
+      "title": "CS2",
+      "subtitle": "拳打三角洲，脚踩瓦学弟，《CS2》怎么就越骂越火了？",
+      "review": "7.6"
     },
     {
-      "image_url": {logo},
-      "title": "Elden Ring: A Masterpiece of Open-World Design",
-      "subtitle": "FromSoftware's most ambitious title yet",
-      "review": "8.0"
+      "image_url": light,
+      "title": "《光与影：33号远征队》",
+      "subtitle": "从育碧出来的法国人，正在教日本人怎么做JRPG",
+      "review": "8.5"
     },
     {
-      "image_url": {logo},
-      "title": "Elden Ring: A Masterpiece of Open-World Design",
-      "subtitle": "FromSoftware's most ambitious title yet",
-      "review": "8.0"
+      "image_url": last,
+      "title": "《最后生还者2》PC重制版",
+      "subtitle": "为什么说这是一款很难被超越的游戏？",
+      "review": "9.1"
     },
   ]
 
@@ -124,17 +128,19 @@ export default function GameReview() {
               const isActive = index === currentIndex;
               return(
               
-              <div key={index} className="w-160 h-75 relative"
+              <div key={index} className="w-160 h-75 relative overflow-clip"
               style={{
                 transform: `scale(${isActive ? 1 : 0.85})`,
                 transition: "transform 1s ease",
               }}>
                 {/* 背景图 */}
-                <img src={logo} alt="Game Review" className=" h-full absolute" />
+                <img src={item?.image_url} alt="Game Review" className=" w-full absolute opacity-50 " />
                 <div className="h-1/2 "/>
-                <div className="absolute w-full h-1/2 bg-gradient-to-t from-black to-transparent opacity-50 flex flex-wrap">
+                <div className="absolute w-full h-1/2 bg-gradient-to-t from-black to-transparent opacity-50 flex flex-wrap z-5">
+                </div>
+                <div className="absolute w-full h-1/2  flex flex-wrap z-10">
                   {/* 标题 */}
-                  <span className="game-title ml-2 mt-2 text-xl text-white w-4/5">
+                  <span className="game-title ml-2 mt-2 text-xl text-white w-4/5 ">
                     {item.title}
                   </span>
                   {/* 评分 */}
@@ -144,7 +150,8 @@ export default function GameReview() {
                   {/* 副标题 */}
                   <div className="w-full h-full ml-2 mt-3">
                     {item.subtitle}
-                  </div>
+                
+                </div>
                 </div>
               </div>
             )}

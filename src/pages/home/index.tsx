@@ -1,6 +1,6 @@
 import Header from './Header';
 import About from './About';
-import Projects from './Projects';
+
 import Footer from './Footer';
 import pixelBanner from '../../assets/Pixel-banner.png';
 import { TheLastst } from './TheLastst';
@@ -17,7 +17,7 @@ export default function Home() {
       
       <TheLastst />
       <GameReview />
-      <Projects />
+      
       
     </main>
     <About />
