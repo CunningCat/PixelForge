@@ -1,5 +1,5 @@
 import Header from './Header';
-import About from './About';
+
 
 import Footer from './Footer';
 import pixelBanner from '../../assets/Pixel-banner.png';
@@ -20,7 +20,7 @@ export default function Home() {
       
       
     </main>
-    <About />
+    
     <Footer />
   </div>);
       };

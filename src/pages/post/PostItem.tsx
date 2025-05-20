@@ -2,8 +2,25 @@ import { PostDownloadInfo } from "@/types/postdownloadinfo"
 import { useNavigate } from "react-router"
 import { ThumbsUp,Ellipsis } from "lucide-react";
 import { MessageSquare } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 export default function PostItem( {item,className}:{item: PostDownloadInfo,className?:string} ) {
   const navigate = useNavigate();
+  const [isActive, setIsActive] = useState(false);
+  const currentURL = window.location.origin;
+  //复制链接方法
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(currentURL + `/post/${item.post_id}`);
+      toast("链接已复制到剪贴板！");
+      setIsActive(false);
+      
+    } catch {
+      toast("复制失败，请手动复制");
+      setIsActive(false);
+    }
+
+  };
   return (
     <div className={`flex flex-col  gap-2 p-2 rounded-2xl ${className}`}>
       <div className="postitem_author flex justify-between">
@@ -11,9 +28,15 @@ export default function PostItem( {item,className}:{item: PostDownloadInfo,class
           <img></img>
           <div>{item.author}</div>
         </div>
-        <button className="text-gray-300 mr-2 cursor-pointer">
+        <div className="text-gray-300 mr-2 cursor-pointer flex flex-col relative" onMouseEnter={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>
           <Ellipsis />
-        </button>
+          {/* 复制链接 */}
+          {isActive &&
+          <button className="absolute w-20 flex justify-center items-center p-2 bg-white rounded-lg top-5 -right-6 cursor-pointer text-black"
+          onClick={copyToClipboard}>复制链接</button>
+          }
+        </div>
+
       </div>
       <div className="flex flex-col gap-1 cursor-pointer"
       onClick={()=>navigate(`/post/${item.post_id}`)}>

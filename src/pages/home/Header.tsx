@@ -23,8 +23,8 @@ export default function Header({ className = "" }:HeaderProps){
       <nav className="space-x-4 text-lg ">
         <ul className="flex gap-10 items-center">
           
-          <li><a href="#about" className="hover:text-yellow-400 hover:underline">About</a></li>
-          <li><button onClick={() =>navigate('/post')} className="hover:text-yellow-400 hover:underline cursor-pointer">Post</button></li>
+          
+          <li><button onClick={() =>navigate('/post')} className="hover:text-yellow-400 hover:underline cursor-pointer">最新帖子</button></li>
         
           <li><button  className="hover:text-yellow-400 hover:underline cursor-pointer"
           onClick={() =>navigate('/creator')}>创作者中心</button></li>
