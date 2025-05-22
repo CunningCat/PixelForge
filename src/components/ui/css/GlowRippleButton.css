@@ -1,0 +1,35 @@
+.glow-ripple-button {
+  position: relative;
+  overflow: hidden;
+  padding: 6px 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #facc15; /* yellow-400 */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 0;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6); /* 柔和白光 */
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-ripple-button:focus {
+  outline: none;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 80%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  animation: ripple-animation 600ms linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
