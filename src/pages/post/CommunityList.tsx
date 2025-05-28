@@ -15,6 +15,7 @@ export default function CommunityList() {
         <li>
           <Button_communityitem src={cs2} name="CS2" urlname="cs2" />
         </li>
+       
       </ul>
     </div>
   );

@@ -42,12 +42,14 @@ export default function ChooseCommunity({setshowSelectCommunity}:{setshowSelectC
                 <CommunityListItem name="英雄联盟" selectCommunity={selectCommunity}/>
                 <CommunityListItem name="CS2" selectCommunity={selectCommunity}/>
                 <CommunityListItem name="堡垒之夜" selectCommunity={selectCommunity}/>
+                <CommunityListItem name="数码硬件" selectCommunity={selectCommunity}/>
                 
               </ul>:
               <ul>
                 <CommunityListItem name="英雄联盟" selectCommunity={selectCommunity}/>
                 <CommunityListItem name="CS2" selectCommunity={selectCommunity}/>
                 <CommunityListItem name="守望先锋" selectCommunity={selectCommunity}/>
+                <CommunityListItem name="数码硬件" selectCommunity={selectCommunity}/>
               </ul>}
               
              
