@@ -1,54 +1,26 @@
-# React + TypeScript + Vite
+# 🎮 PixelForge - 游戏资讯社区
+(https://pixel-forge-ruddy.vercel.app/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**基于react开发的游戏资讯社区平台**，支持用户注册、发帖、点赞和实时互动。基于现代前端技术栈构建，注重性能与用户体验。
 
-Currently, two official plugins are available:
+## ✨ 功能特性
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **用户系统**  
+  ✅ 邮箱/GitHub 第三方登录（Supabase Auth）  
+  ✅ 个人信息编辑与头像上传（Supabase Storage）  
+- **内容互动**  
+  ✅ 帖子发布、列表渲染与分类查看  
+  ✅ 实时点赞/取消点赞（Supabase Realtime）  
+  ✅ 评论功能（关联数据库外键）  
+- **性能优化**  
+  ⚡ Vite 构建 + 代码分割  
+  ⚡ 图片懒加载 + 骨架屏占位  
 
-## Expanding the ESLint configuration
+## 🛠️ 技术栈
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+| 领域          | 技术选型                                                                 |
+|---------------|--------------------------------------------------------------------------|
+| **前端框架**  | React 18 + TypeScript + Vite                                             |
+| **状态管理**  | Redux Toolkit（异步Thunk + Slice）                                       |
+| **UI 组件库** | Shadcn/ui（基于 Radix UI + TailwindCSS）                                 |
+| **后端服务**  | Supabase（PostgreSQL 数据库、Auth 鉴权、Storage 存储、Realtime 订阅）    |
