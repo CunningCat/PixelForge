@@ -1,4 +1,4 @@
-export  type PostDownloadInfo = {
+export type PostDownloadInfo = {
   post_id:string;
   title: string;
   content: string;
@@ -8,4 +8,6 @@ export  type PostDownloadInfo = {
   likes: number;
   commentnum: number;
   community_category: string;
+  avatar_url?: string;
+  
 };

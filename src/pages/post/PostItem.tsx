@@ -22,10 +22,10 @@ export default function PostItem( {item,className}:{item: PostDownloadInfo,class
 
   };
   return (
-    <div className={`flex flex-col  gap-2 p-2 rounded-2xl ${className}`}>
+    <div className={`flex flex-col  gap-2 p-4 rounded-2xl ${className}`}>
       <div className="postitem_author flex justify-between">
-        <div className="">
-          <img></img>
+        <div className="flex mt-2">
+          <img className="w-5 mr-2 rounded-full" src={item.avatar_url}></img>
           <div>{item.author}</div>
         </div>
         <div className="text-gray-300 mr-2 cursor-pointer flex flex-col relative" onMouseEnter={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>
