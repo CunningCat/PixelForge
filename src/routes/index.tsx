@@ -6,6 +6,8 @@ import { createBrowserRouter } from "react-router";
 import Profile from "@/pages/profile"
 import Post from "@/pages/post"
 import PostDetail from "@/pages/postdetail";
+import Page_Community from "@/pages/post/Page_Community";
+import AllPost from "@/pages/post/AllPost";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -32,11 +34,16 @@ const routes = createBrowserRouter([
   {
     path:'/post',
     element:<Post />,
+    children:[
+      {index:true,element:<AllPost />},
+      {path:'community/:community',element:<Page_Community />}
+    ]
   },
   {
     path: '/post/:post_id',
     element: <PostDetail />
-  }
+  },
+  
   ]);
   
   export { routes };

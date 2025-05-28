@@ -1,7 +1,7 @@
 import { Editor } from "./Editor"
 import { useDispatch,useSelector } from "react-redux"
 import { useEffect,useState } from "react";
-import { setAuthor, setCommunity } from "@/store/modules/postStore";
+import { setAuthor } from "@/store/modules/postStore";
 import { RootState } from "@/store";
 import ChooseCommunity from "./ChooseCommunity";
 
@@ -14,14 +14,12 @@ export default function  Creator() {
     
     if(userInfo.name)
       dispatch(setAuthor(userInfo.name));
-    return () => {
-      dispatch(setCommunity(''));
-    };
-  })
+    
+  },[]);
 
   const showSelectCommunity = () => {
     setIsShowSelectCommunity(!isShowSelectCommunity);
-    console.log(isShowSelectCommunity);
+    
   }
   return (
     <div className="relative">

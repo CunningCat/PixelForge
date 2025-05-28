@@ -1,10 +1,10 @@
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import  TextImage  from "./TextImage";
 import  Article  from "./Article";
 import createPost from "@/services/createPost";
 import { useSelector,useDispatch } from "react-redux";
 import  {RootState}  from '@/store';
-import { setUid } from "@/store/modules/postStore";
+import { setPost, setUid } from "@/store/modules/postStore";
 import {  useNavigate } from "react-router";
 import {toast} from "sonner"
 import { useAsyncLock } from "@/hooks/useAsynLock";
@@ -70,6 +70,16 @@ export function Editor({setshowSelectCommunity}:{setshowSelectCommunity:()=>void
     dispatch(setCommunity(''));
    
   }
+  useEffect(() => {
+    return () => {
+      dispatch(setPost({uid: '',
+      title: '',
+      content: '',
+      imageUrl: '',
+      author: '',
+      community:'',}));
+    };
+  }, [dispatch]);
 
   return (
     <div className="w-150 h-200 bg-white flex flex-col rounded-lg shadow-lg relative px-6">

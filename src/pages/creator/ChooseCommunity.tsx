@@ -1,18 +1,25 @@
 import { Search } from "lucide-react";
 import TabSelector from "@/components/TabSelector";
 import "./css/index.css"
-import { useState } from "react";
+import {  useState } from "react";
 import { setCommunity } from "@/store/modules/postStore";
 import { useDispatch } from "react-redux";
+
 import CommunityListItem from "./CommunityListItem";
 export default function ChooseCommunity({setshowSelectCommunity}:{setshowSelectCommunity:()=>void}) {
   const [showList, setShowList] = useState(0);
   const dispatch = useDispatch();
+  
   //选择社区
   const selectCommunity = (name:string)=>{
+    console.log("你点击了社区：", name);
     dispatch(setCommunity(name));
-    setshowSelectCommunity();
+    setTimeout(() => {
+      setshowSelectCommunity();
+  }, 100);
+    
   }
+  
 
   return (
     <div className="flex items-center justify-center h-screen w-full flex-col z-10 bg-black/50 absolute top-0 left-0">

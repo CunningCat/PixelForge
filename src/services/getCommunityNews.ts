@@ -1,13 +1,14 @@
 import { supabase } from "@/lib/supabaseClient";
 import dayjs from "dayjs";
 
-export async function getLatestNews(offset = 0, itemnum = 5,) {
+export async function getCommunityNews(offset = 0, itemnum = 5,community_category:string) {
   
  
   const { data, error } = await supabase
     .from('posts')
     .select('title, content, image_url,created_time,post_id:id,author,commentnum,likes,community_category')
     .order('created_time', { ascending: false })
+    .eq('community_category',community_category)
     .range(offset, offset +itemnum -1);
 
   if (error) {
