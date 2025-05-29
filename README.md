@@ -10,8 +10,8 @@
   ✅ 个人信息编辑与头像上传（Supabase Storage）  
 - **内容互动**  
   ✅ 帖子发布、列表渲染与分类查看  
-  ✅ 实时点赞/取消点赞（Supabase Realtime）  
-  ✅ 评论功能（关联数据库外键）  
+  ✅ 实时点赞/取消点赞  
+  ✅ 评论功能  
 - **性能优化**  
   ⚡ Vite 构建 + 代码分割  
   ⚡ 图片懒加载 + 骨架屏占位  
@@ -23,4 +23,4 @@
 | **前端框架**  | React 18 + TypeScript + Vite                                             |
 | **状态管理**  | Redux Toolkit（异步Thunk + Slice）                                       |
 | **UI 组件库** | Shadcn/ui（基于 Radix UI + TailwindCSS）                                 |
-| **后端服务**  | Supabase（PostgreSQL 数据库、Auth 鉴权、Storage 存储、Realtime 订阅）    |
+| **后端服务**  | Supabase（PostgreSQL 数据库、Auth 鉴权、Storage 存储）    |

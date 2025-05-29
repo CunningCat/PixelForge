@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import  {RootState}  from '@/store';
 import { UserAvatar } from "@/components/user/UserAvatar";
 import { useNavigate } from "react-router";
-import banner from "../../assets/banner.png"
 import { toast } from "sonner"
 import { useEffect,useState } from "react";
 
@@ -34,7 +33,7 @@ export default function Header({ className = "" }:HeaderProps){
       setShowLoginButton(false);
   },[user.userInfo.uid])
   return (
-    <header className={`py-2 px-4 h-20 flex justify-between items-center  bg-opacity-80 text-white ${className}`} style={{backgroundImage: `url(${banner})`, backgroundSize: 'cover'}}>
+    <header className={`py-2 px-4 h-20 flex justify-between items-center  bg-opacity-80  ${className}`} >
       <div className="flex items-center space-x-4 cursor-pointer" onClick={() =>navigate('/')}>
         <img src={logo} alt="logo" className="h-10 " />
         <h1 className="text-3xl">PixelForge</h1>
