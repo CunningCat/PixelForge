@@ -22,7 +22,7 @@ export default function PostItem( {item,className}:{item: PostDownloadInfo,class
 
   };
   return (
-    <div className={`flex flex-col  gap-2 p-4 rounded-2xl ${className}`}>
+    <div className={`flex flex-col  gap-2 p-4 rounded-2xl  ${className}`}>
       <div className="postitem_author flex justify-between">
         <div className="flex mt-2">
           <img className="w-5 mr-2 rounded-full" src={item.avatar_url}></img>
@@ -32,7 +32,7 @@ export default function PostItem( {item,className}:{item: PostDownloadInfo,class
           <Ellipsis />
           {/* 复制链接 */}
           {isActive &&
-          <button className="absolute w-20 flex justify-center items-center p-2 bg-white rounded-lg top-5 -right-6 cursor-pointer text-black"
+          <button className="absolute w-25 flex justify-center items-center p-2 bg-white top-5 -right-6 cursor-pointer text-black border rounded-2xl shadow-md border-gray-200 hover:shadow-xl transition-shadow duration-300"
           onClick={copyToClipboard}>复制链接</button>
           }
         </div>

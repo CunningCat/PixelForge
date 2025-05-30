@@ -51,7 +51,7 @@ export default function Page_Community() {
         <ButtonReturn />
       
       
-      {postList?postList.map((item) => <PostItem className="bg-gray-100 mb-4 mt-2" key={item.post_id} item={item}/>)
+      {postList?postList.map((item) => <PostItem className="bg-gray-100 mb-4  rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300" key={item.post_id} item={item}/>)
         : <div>加载中...</div>}
       
       {hasMore? <InfiniteScroll onReachBottom={loadPosts} />:

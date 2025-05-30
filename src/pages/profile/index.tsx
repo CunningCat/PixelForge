@@ -167,7 +167,7 @@ export default function Profile(){
       <ProfilePostsSelect />
       {postList &&
       <div className="flex flex-col gap-5 w-[60%] mx-auto bg-black">
-        {postList.map((item) => <div><PostItem className="black text-white bo" key={item.post_id} item={item}/>
+        {postList.map((item) => <div><PostItem className="black text-white  " key={item.post_id} item={item}/>
         <hr className="text-gray-200"/>
         </div>)}
         

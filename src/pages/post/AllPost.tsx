@@ -41,7 +41,7 @@ export default function AllPost() {
           <CommunityList />
       </div>
       
-      {postList?postList.map((item) => <PostItem className="bg-gray-100 mb-4" key={item.post_id} item={item}/>)
+      {postList?postList.map((item) => <PostItem className="bg-gray-100 mb-4  rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300" key={item.post_id} item={item}/>)
         : <div>加载中...</div>}
       
       {hasMore? <InfiniteScroll onReachBottom={loadPosts} />:
