@@ -7,6 +7,7 @@ import { routes } from './routes'
 import store from './store'
 import { Provider } from 'react-redux'
 import { Toaster } from './components/ui/sonner'
+import Page_Loading from './pages/Page_Loading';
 import GlobalInitializer from './components/GlobalInitializer'
 
 
@@ -14,7 +15,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <GlobalInitializer />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Page_Loading />}>
         <RouterProvider router={routes} />
       </Suspense>
       <Toaster />
