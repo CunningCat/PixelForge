@@ -1,13 +1,17 @@
-import Home from "../pages/home";
-import Login from "../pages/login";
-import Register from "@/pages/login/register";
-import Creator from "@/pages/creator";
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router";
-import Profile from "@/pages/profile"
-import Post from "@/pages/post"
-import PostDetail from "@/pages/postdetail";
-import Page_Community from "@/pages/post/Page_Community";
-import AllPost from "@/pages/post/AllPost";
+
+
+const Home = lazy(() => import("../pages/home"));
+const Login = lazy(() => import("../pages/login"));
+const Register = lazy(() => import("@/pages/login/register"));
+const Creator = lazy(() => import("@/pages/creator"));
+const Profile = lazy(() => import("@/pages/profile"));
+const Post = lazy(() => import("@/pages/post"));
+const PostDetail = lazy(() => import("@/pages/postdetail"));
+const Page_Community = lazy(() => import("@/pages/post/Page_Community"));
+const AllPost = lazy(() => import("@/pages/post/AllPost"));
+const Loading = lazy(() => import("@/pages/Page_Loading"));
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -43,7 +47,10 @@ const routes = createBrowserRouter([
     path: '/post/:post_id',
     element: <PostDetail />
   },
-  
+  {
+    path: '/Loading',
+    element: <Loading />
+  },
   ]);
   
   export { routes };
