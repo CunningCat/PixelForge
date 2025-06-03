@@ -6,7 +6,7 @@ import { useState } from "react";
 import { getLatestNews } from "@/services/getLatestNews";
 import { useNavigate } from "react-router";
 import { PostDownloadInfo } from "@/types/postdownloadinfo";
-
+import Loadding from "@/components/Loading";
 
 
 export function TheLastst() {
@@ -37,7 +37,7 @@ export function TheLastst() {
       最新动态
       </div>
       
-      {latestNews.length === 0 ? <div>加载中...</div>:
+      {latestNews.length === 0 ? <Loadding />:
       <div className="flex mt-4 gap-20 mx-20">
       
         <div className="w-1/2 h-1/2 flex flex-col gap-2 cursor-pointer" 
