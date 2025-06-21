@@ -14,7 +14,7 @@ export default function Home() {
     <Header />
     
     <img className="w-[100%] h-full mb-20" src={pixelBanner} alt="Pixel Art Background" />
-    <main className="bannel flex flex-col gap-20 w-[85%] mx-auto ">
+    <main className="bannel flex flex-col gap-20  mx-auto ">
       
       <TheLastst />
       <GameReview />

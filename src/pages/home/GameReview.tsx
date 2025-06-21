@@ -47,8 +47,8 @@ export default function GameReview() {
   ]
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const cardWidth = 640; // 每张卡片宽度 px
-  const gap = 120; // 卡片之间的距离 px
+  const [cardWidth, setCardWidth] = useState(640);
+  const [gap,setGap] = useState(120); // 卡片之间的距离 px
   const totalWidth = cardWidth + gap;
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
  
@@ -76,7 +76,16 @@ export default function GameReview() {
     };
   }, []);
 
-  
+  useEffect(() => {
+    const updateWidth = () => {
+      const width = window.innerWidth;
+      setCardWidth(width < 640 ? 320 : 640);
+      setGap(width < 640 ? 60 : 120);
+    };
+    updateWidth(); // 初始设置
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
   
   
 
@@ -128,10 +137,12 @@ export default function GameReview() {
               const isActive = index === currentIndex;
               return(
               
-              <div key={index} className="w-160 h-75 relative overflow-clip"
-              style={{
-                transform: `scale(${isActive ? 1 : 0.85})`,
-                transition: "transform 1s ease",
+                <div key={index} className=" relative overflow-clip"
+                  style={{
+                  width: `${cardWidth}px`,
+                  height: `${cardWidth/16*9}px`,
+                  transform: `scale(${isActive ? 1 : 0.85})`,
+                  transition: "transform 1s ease",
               }}>
                 {/* 背景图 */}
                 <img src={item?.image_url} alt="Game Review" className=" w-full absolute opacity-50 " />

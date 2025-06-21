@@ -118,3 +118,31 @@
     @apply bg-gray-900 text-foreground;
   }
 }
+
+html {
+  font-size: clamp(14px, 2vw, 18px);
+  /* PC 默认字体大小 */
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 12px;
+    /* 手机默认字体稍小 */
+  }
+}
+
+.title-text {
+  @apply text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold;
+}
+
+.body-text {
+  @apply text-sm sm:text-base md:text-lg;
+}
+
+.btn-text {
+  @apply text-sm sm:text-base;
+}
+
+.title-list{
+  @apply gap-10 sm:gap-1 md:gap-5;
+}

@@ -36,10 +36,10 @@ export default function Header({ className = "" }:HeaderProps){
     <header className={`py-2 px-4 h-20 flex justify-between items-center  bg-opacity-80    ${className}`} >
       <div className="flex items-center space-x-4 cursor-pointer" onClick={() =>navigate('/')}>
         <img src={logo} alt="logo" className="h-10 " />
-        <h1 className="text-3xl">PixelForge</h1>
+        <h1 className="title-text">PixelForge</h1>
       </div>
       <nav className="space-x-4 text-lg ">
-        <ul className="flex gap-10 items-center">
+        <ul className="flex title-list items-center btn-text">
           
           
           <li><button onClick={() =>navigate('/post')} className="hover:text-yellow-400 hover:underline cursor-pointer">最新帖子</button></li>

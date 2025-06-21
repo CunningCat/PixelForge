@@ -33,17 +33,17 @@ export function TheLastst() {
 
   return(
     <div className="flex flex-col ">
-      <div className="div-gap">
+      <div className="div-gap ">
       最新动态
       </div>
       
       {latestNews.length === 0 ? <Loadding />:
-      <div className="flex mt-4 gap-20 mx-20">
+      <div className="flex mt-4 title-list mx-20">
       
         <div className="w-1/2 h-1/2 flex flex-col gap-2 cursor-pointer" 
         onClick={handleNavigate}>
           <img src={latestNews[0].image_url} ></img>
-          <div className="news">最新消息</div>
+          <div className="news title-text">最新消息</div>
           <div className="TheLatest_title text-2xl">{latestNews[0].title}</div>
           <div className="sub-headline">
             <p className="line-clamp-3">{latestNews[0].content}</p>
