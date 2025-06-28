@@ -13,6 +13,16 @@ export default async function addComment({...prop}) {
     console.error("插入评论失败", error);
     return false;
   }
-  
+  // 成功评论就添加经验
+  const { error: expError } = await supabase.rpc("increment_user_exp", {
+    uid: prop.user_id,
+    amount: 100,
+  });
+
+  if (expError) {
+    console.error("增加经验失败", expError);
+    
+    return false;
+  }
   return true;
 }

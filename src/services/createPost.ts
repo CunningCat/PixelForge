@@ -21,5 +21,17 @@ export default async function createPost({PostInfo:postinfo}: {PostInfo: PostUpl
   }
 
   console.log('插入成功：');
+   // 成功评论就添加经验
+  const { error: expError } = await supabase.rpc("increment_user_exp", {
+    uid:  postinfo.uid,
+    amount: 500,
+  });
+
+  if (expError) {
+    console.error("增加经验失败", expError);
+    
+    return false;
+  }
+
   return true;
 }
