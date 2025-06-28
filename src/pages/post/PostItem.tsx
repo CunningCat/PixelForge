@@ -36,7 +36,7 @@ export default function PostItem({
           ></img>
           <div>{item.author}</div>
           <div className="inline-block ml-2 transform scale-50 origin-left">
-            <LevelBadge exp={item.exp} />
+            <LevelBadge exp={item.exp||0} />
           </div>
         </div>
         <div

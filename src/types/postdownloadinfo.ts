@@ -9,5 +9,5 @@ export type PostDownloadInfo = {
   commentnum: number;
   community_category: string;
   avatar_url?: string;
-  exp: number;
+  exp?: number;
 };
