@@ -14,6 +14,7 @@ import getSelfPost from "@/services/getSelfPost";
 import { PostDownloadInfo } from "@/types/postdownloadinfo";
 import ProfilePostsSelect from "./ProfilePostsSelect";
 import InfiniteScroll from "@/components/InfiniteScrollProps";
+import LevelBadge from "@/components/ui/LevelBadge";
 
 export default function Profile(){
   const {user} = useSelector((state: RootState) => state);
@@ -124,7 +125,7 @@ export default function Profile(){
   return (
     <div className="flex flex-col ">
       <Header className="text-white"/>
-     
+     {/* 用户信息区 */}
       <div className="flex flex-col items-center mt-10 bg-white w-[60%] mx-auto">
         <div className="bg-gray-600 w-full h-40"></div>
         <div className="bg-black w-full h-40">
@@ -150,7 +151,8 @@ export default function Profile(){
                 setIsEditing(false);
               }}} 
               ref={inputRef} defaultValue={user.userInfo.name}></input>:
-              <span>{user.userInfo.name}</span>}
+                <span>{user.userInfo.name}</span>}
+              <LevelBadge exp={user.userInfo.exp} />
               <button className=" ml-2 w-10 h-10 bg-cover cursor-pointer" style={{ backgroundImage: `url(${fixImg})` }}
               onClick={() => {handleUpdateUserName(inputRef.current?.value || '');
                 isButtonClickedRef.current = false;}}
@@ -164,6 +166,7 @@ export default function Profile(){
           </div>
         </div>
       </div>
+      {/* 帖子列表 */}
       <ProfilePostsSelect />
       {postList &&
       <div className="flex flex-col gap-5 w-[60%] mx-auto bg-black">

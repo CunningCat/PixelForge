@@ -10,7 +10,7 @@ export async function fetchUserFromSupabase(userId: string): Promise<User | null
 
   const { data, error } = await supabase
     .from('user_info')
-    .select('uid, name, avatar_url')
+    .select('uid, name, avatar_url,exp')
     .eq('uid', userId)
     .single();
 
@@ -23,5 +23,6 @@ export async function fetchUserFromSupabase(userId: string): Promise<User | null
     uid: data.uid,
     name: data.name,
     avatar_url: data.avatar_url,
+    exp: data.exp
   };
 }

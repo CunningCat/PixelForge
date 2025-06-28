@@ -16,7 +16,7 @@ export const useAuthInit = () => {
         .then((user) => {
           if (user) {
             dispatch(setUser(user));
-            console.log(user);
+            
           } else {
             console.error('用户信息为空');
           }

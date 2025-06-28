@@ -7,7 +7,8 @@ const userSlice = createSlice({
     userInfo:{
       uid:'',
       name:'',
-      avatar_url:''
+      avatar_url: '',
+      exp:0,
     }
   },
   reducers:{
@@ -19,11 +20,14 @@ const userSlice = createSlice({
     },
     setAvatar(state,action:PayloadAction<string>){
       state.userInfo.avatar_url = action.payload
+    },
+    setExp(state,action:PayloadAction<number>){
+      state.userInfo.exp = action.payload
     }
   }
 })
 
-export const {setUser,setUserName,setAvatar} = userSlice.actions
+export const {setUser,setUserName,setAvatar,setExp} = userSlice.actions
 const reducer = userSlice.reducer
 
 export default reducer
