@@ -15,12 +15,11 @@ type PostWithUserInfo = {
     exp?: number;
   };
 };
-export async function getLatestNews(offset = 0, itemnum = 5,) {
-  
- 
+export async function getLatestNews(offset = 0, itemnum = 5) {
   const { data, error } = await supabase
-  .from('posts')
-  .select(`
+    .from("posts")
+    .select(
+      `
     title,
     content,
     image_url,
@@ -35,20 +34,21 @@ export async function getLatestNews(offset = 0, itemnum = 5,) {
       avatar_url,
       exp
     )
-  `)
-  .order('created_time', { ascending: false })
-  .range(offset, offset + itemnum - 1);
+  `,
+    )
+    .order("created_time", { ascending: false })
+    .range(offset, offset + itemnum - 1);
 
   if (error) {
-    console.error('从 Supabase 获取最新帖子失败：', error.message);
+    console.error("从 Supabase 获取最新帖子失败：", error.message);
     return [];
   }
   //对返回的时间进行格式化处理
-  const formattedData = (data as PostWithUserInfo[]).map(item => {
+  const formattedData = (data as PostWithUserInfo[]).map((item) => {
     return {
       ...item,
-      created_time : dayjs(item.created_time).format('YYYY-MM-DD HH:mm:ss'),
-      avatar_url: item.user_info?.avatar_url || '',
+      created_time: dayjs(item.created_time).format("YYYY-MM-DD HH:mm:ss"),
+      avatar_url: item.user_info?.avatar_url || "",
       exp: item.user_info?.exp || 0,
     };
   });

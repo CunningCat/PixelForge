@@ -143,6 +143,6 @@ html {
   @apply text-sm sm:text-base;
 }
 
-.title-list{
+.title-list {
   @apply gap-10 sm:gap-1 md:gap-5;
 }

@@ -1,5 +1,5 @@
-import {supabase} from "@/lib/supabaseClient";
-import dayjs from 'dayjs';
+import { supabase } from "@/lib/supabaseClient";
+import dayjs from "dayjs";
 
 type PostWithUserInfo = {
   title: string;
@@ -15,14 +15,16 @@ type PostWithUserInfo = {
     avatar_url?: string;
     exp?: number;
   };
-  
 };
-export default async function getSelfPost( uid:string ,offset = 0, itemnum = 5) 
-{
-  
+export default async function getSelfPost(
+  uid: string,
+  offset = 0,
+  itemnum = 5,
+) {
   const { data, error } = await supabase
-    .from('posts')
-    .select(`
+    .from("posts")
+    .select(
+      `
     title,
     content,
     image_url,
@@ -38,23 +40,24 @@ export default async function getSelfPost( uid:string ,offset = 0, itemnum = 5)
       exp
     )
     
-  `)
-    .eq('user_id', uid)
-    .order('created_time', { ascending: false })
-    .range(offset, offset +itemnum -1);
+  `,
+    )
+    .eq("user_id", uid)
+    .order("created_time", { ascending: false })
+    .range(offset, offset + itemnum - 1);
   if (error) {
     console.error("获取帖子失败", error);
     return null;
   }
 
-  const formattedData = (data as PostWithUserInfo[]).map(item => {
-      return {
-        ...item,
-        created_time : dayjs(item.created_time).format('YYYY-MM-DD HH:mm:ss'),
-        avatar_url: item.user_info?.avatar_url || '',
-        exp: item.user_info?.exp || 0,
-      };
-    });
+  const formattedData = (data as PostWithUserInfo[]).map((item) => {
+    return {
+      ...item,
+      created_time: dayjs(item.created_time).format("YYYY-MM-DD HH:mm:ss"),
+      avatar_url: item.user_info?.avatar_url || "",
+      exp: item.user_info?.exp || 0,
+    };
+  });
 
   return formattedData;
 }

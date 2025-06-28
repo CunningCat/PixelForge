@@ -1,17 +1,16 @@
 export default function LevelBadge({ exp }: { exp: number }) {
-
-  const getLevel=(exp: number) => {
+  const getLevel = (exp: number) => {
     const levelCurve = (level: number) => level * level * 100;
     let level = 1;
     while (exp >= levelCurve(level + 1)) {
       level++;
     }
     return level;
-  }
+  };
 
   const level = getLevel(exp);
   const baseClass =
-  "px-3 py-1 rounded-lg font-mono text-sm border shadow-md transition-all duration-300";
+    "px-3 py-1 rounded-lg font-mono text-sm border shadow-md transition-all duration-300";
   let levelClass = "";
 
   if (level < 10) {
@@ -28,9 +27,7 @@ export default function LevelBadge({ exp }: { exp: number }) {
 
   return (
     <div>
-      <div className={`${baseClass} ${levelClass}`}>
-        LV.{level}
-      </div>
+      <div className={`${baseClass} ${levelClass}`}>LV.{level}</div>
     </div>
   );
 }

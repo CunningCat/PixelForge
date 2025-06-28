@@ -1,21 +1,24 @@
-import {createSlice,PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PostUploadInfo } from "@/types/postuploadinfo";
 
 const postSlice = createSlice({
-  name:'post',
-  initialState:{
-    postInfo:{
-      uid: '',
-      title: '',
-      content: '',
-      imageUrl: '',
-      author: '',
-      community:'',
-    }
+  name: "post",
+  initialState: {
+    postInfo: {
+      uid: "",
+      title: "",
+      content: "",
+      imageUrl: "",
+      author: "",
+      community: "",
+    },
   },
-  reducers:{
-    setPost(state,action:PayloadAction<PostUploadInfo>){
-      state.postInfo = {...action.payload,community:state.postInfo.community}
+  reducers: {
+    setPost(state, action: PayloadAction<PostUploadInfo>) {
+      state.postInfo = {
+        ...action.payload,
+        community: state.postInfo.community,
+      };
     },
     setTitle(state, action: PayloadAction<string>) {
       state.postInfo.title = action.payload;
@@ -35,9 +38,17 @@ const postSlice = createSlice({
     setCommunity(state, action: PayloadAction<string>) {
       state.postInfo.community = action.payload;
     },
-  }
-})
+  },
+});
 
-export const {setPost,setTitle,setContent,setImageUrl,setUid,setAuthor,setCommunity} = postSlice.actions
-const reducer = postSlice.reducer
-export default reducer
+export const {
+  setPost,
+  setTitle,
+  setContent,
+  setImageUrl,
+  setUid,
+  setAuthor,
+  setCommunity,
+} = postSlice.actions;
+const reducer = postSlice.reducer;
+export default reducer;

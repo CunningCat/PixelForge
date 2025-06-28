@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import  { useRef, MouseEvent } from "react";
+import { useRef, MouseEvent } from "react";
 import "./css/GlowRippleButton.css";
 
 export default function GlowRippleButton({

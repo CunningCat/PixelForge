@@ -1,4 +1,4 @@
-.articleslist{
+.articleslist {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -9,6 +9,6 @@
   font-size: var(--text-2xl) /* 1.5rem = 24px */;
   line-height: var(--tw-leading, var(--text-2xl--line-height));
 }
-.articleslist:hover{
+.articleslist:hover {
   background-color: #e5e5e524;
 }

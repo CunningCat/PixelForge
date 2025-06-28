@@ -1,5 +1,4 @@
-.ChooseCommunity-list_item{
-
+.ChooseCommunity-list_item {
   height: 2rem;
   cursor: pointer;
   text-justify: center;
@@ -7,8 +6,6 @@
   justify-items: center;
   align-items: center;
 }
-.ChooseCommunity-list_item:hover{
-
+.ChooseCommunity-list_item:hover {
   background: #e5e5e576;
-  
 }

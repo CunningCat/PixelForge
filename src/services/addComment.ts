@@ -1,5 +1,5 @@
-import { supabase } from '@/lib/supabaseClient';
-export default async function addComment({...prop}) {
+import { supabase } from "@/lib/supabaseClient";
+export default async function addComment({ ...prop }) {
   const { error } = await supabase.from("comments").insert([
     {
       content: prop.content,
@@ -21,7 +21,7 @@ export default async function addComment({...prop}) {
 
   if (expError) {
     console.error("增加经验失败", expError);
-    
+
     return false;
   }
   return true;

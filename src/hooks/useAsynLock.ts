@@ -14,7 +14,7 @@ export function useAsyncLock() {
         setLocked(false);
       }
     },
-    [locked]
+    [locked],
   );
 
   return { withLock, locked };

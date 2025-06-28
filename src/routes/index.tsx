@@ -1,7 +1,6 @@
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router";
 
-
 const Home = lazy(() => import("../pages/home"));
 const Login = lazy(() => import("../pages/login"));
 const Register = lazy(() => import("@/pages/login/register"));
@@ -19,38 +18,37 @@ const routes = createBrowserRouter([
     element: <Home />,
   },
   {
-    path:'/login',
-    element:<Login />,
+    path: "/login",
+    element: <Login />,
   },
   {
-    path:'/register',
-    element:<Register />,
+    path: "/register",
+    element: <Register />,
   },
   {
-    path:'/creator',
-    element:<Creator />,
+    path: "/creator",
+    element: <Creator />,
   },
   {
-    path:'/profile',
-    element:<Profile />,
-    
+    path: "/profile",
+    element: <Profile />,
   },
   {
-    path:'/post',
-    element:<Post />,
-    children:[
-      {index:true,element:<AllPost />},
-      {path:'community/:community',element:<Page_Community />}
-    ]
+    path: "/post",
+    element: <Post />,
+    children: [
+      { index: true, element: <AllPost /> },
+      { path: "community/:community", element: <Page_Community /> },
+    ],
   },
   {
-    path: '/post/:post_id',
-    element: <PostDetail />
+    path: "/post/:post_id",
+    element: <PostDetail />,
   },
   {
-    path: '/Loading',
-    element: <Loading />
+    path: "/Loading",
+    element: <Loading />,
   },
-  ]);
-  
-  export { routes };
+]);
+
+export { routes };

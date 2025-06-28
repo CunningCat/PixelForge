@@ -1,4 +1,4 @@
-import { useAuthInit } from '../hooks/useAuthInit';
+import { useAuthInit } from "../hooks/useAuthInit";
 
 const GlobalInitializer = () => {
   useAuthInit(); // 初始化 Redux 状态

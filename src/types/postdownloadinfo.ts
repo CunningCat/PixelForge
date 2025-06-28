@@ -1,5 +1,5 @@
 export type PostDownloadInfo = {
-  post_id:string;
+  post_id: string;
   title: string;
   content: string;
   image_url: string;
@@ -10,5 +10,4 @@ export type PostDownloadInfo = {
   community_category: string;
   avatar_url?: string;
   exp: number;
-  
 };

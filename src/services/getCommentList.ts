@@ -1,6 +1,12 @@
 import { supabase } from "@/lib/supabaseClient";
 import dayjs from "dayjs";
-export default async function getCommentList({ post_id, itemnum =5 }: { post_id: string, itemnum?: number }) {
+export default async function getCommentList({
+  post_id,
+  itemnum = 5,
+}: {
+  post_id: string;
+  itemnum?: number;
+}) {
   const { data, error } = await supabase
     .from("comments")
     .select("*")
@@ -15,11 +21,11 @@ export default async function getCommentList({ post_id, itemnum =5 }: { post_id:
   if (!data) {
     return [];
   }
-  const formattedData = data.map(item => {
+  const formattedData = data.map((item) => {
     return {
       ...item,
-      created_at : dayjs(item.created_at).format('YYYY-MM-DD HH:mm:ss'),
+      created_at: dayjs(item.created_at).format("YYYY-MM-DD HH:mm:ss"),
     };
   });
-  return formattedData ;
+  return formattedData;
 }
