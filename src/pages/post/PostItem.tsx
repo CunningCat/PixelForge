@@ -4,6 +4,7 @@ import { ThumbsUp,Ellipsis } from "lucide-react";
 import { MessageSquare } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import LevelBadge from "@/components/ui/LevelBadge";
 export default function PostItem( {item,className}:{item: PostDownloadInfo,className?:string} ) {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
@@ -24,9 +25,13 @@ export default function PostItem( {item,className}:{item: PostDownloadInfo,class
   return (
     <div className={`flex flex-col  gap-2 p-4 rounded-2xl  ${className}`}>
       <div className="postitem_author flex justify-between">
-        <div className="flex mt-2">
-          <img className="w-5 mr-2 rounded-full" src={item.avatar_url}></img>
+        <div className="flex mt-2 items-center">
+          <img className="w-10 h-10 mr-2 rounded-full" src={item.avatar_url}></img>
           <div>{item.author}</div>
+          <div className="inline-block ml-2 transform scale-50 origin-left">
+            <LevelBadge exp={item.exp} />
+          </div>
+          
         </div>
         <div className="text-gray-300 mr-2 cursor-pointer flex flex-col relative" onMouseEnter={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>
           <Ellipsis />

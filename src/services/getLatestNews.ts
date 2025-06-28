@@ -12,6 +12,7 @@ type PostWithUserInfo = {
   community_category: string;
   user_info?: {
     avatar_url?: string;
+    exp?: number;
   };
 };
 export async function getLatestNews(offset = 0, itemnum = 5,) {
@@ -31,7 +32,8 @@ export async function getLatestNews(offset = 0, itemnum = 5,) {
     community_category,
     
     user_info (
-      avatar_url
+      avatar_url,
+      exp
     )
   `)
   .order('created_time', { ascending: false })
@@ -47,6 +49,7 @@ export async function getLatestNews(offset = 0, itemnum = 5,) {
       ...item,
       created_time : dayjs(item.created_time).format('YYYY-MM-DD HH:mm:ss'),
       avatar_url: item.user_info?.avatar_url || '',
+      exp: item.user_info?.exp || 0,
     };
   });
 

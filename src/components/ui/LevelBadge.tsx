@@ -27,7 +27,7 @@ export default function LevelBadge({ exp }: { exp: number }) {
   }
 
   return (
-    <div className="p-2 bg-black text-white space-y-2">
+    <div>
       <div className={`${baseClass} ${levelClass}`}>
         LV.{level}
       </div>
